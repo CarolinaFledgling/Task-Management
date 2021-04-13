@@ -13,7 +13,7 @@ class CountDownTimer extends React.Component {
     super(props)
 
     this.state={
-      counter: 5, // jak pobrac wartość z this state counter do mojego inputa gdzie wpisuje mój Czas do zadania ?
+      counter: props.counter, // jak pobrac wartość z this state counter do mojego inputa gdzie wpisuje mój Czas do zadania ?
     }
   }
 
@@ -48,7 +48,7 @@ class CountDownTimer extends React.Component {
   render(){
     return(
       <div>
-        <p>Name of Task: {this.props.title} My time: {this.props.counter}</p> 
+        <p>Name of Task: {this.props.title}</p> 
         <p>Time Remaining: {this.state.counter}</p> 
       </div>
     )
@@ -64,12 +64,7 @@ class App extends React.Component{
     this.inputFieldTime= React.createRef();
 
     this.state = {
-      listTasks: [
-        {
-          // name: 'Nauka Metod tablic w Js',
-          // time: 1000,
-        }
-      ]
+      listTasks: [],
     }
 
   }
@@ -105,7 +100,7 @@ class App extends React.Component{
               this.state.listTasks.map(elem=>{
                 return (
                   <CountDownTimer title={elem.name} counter={elem.time}/>
-                )
+                )                                  
               })
             }
           </ul>

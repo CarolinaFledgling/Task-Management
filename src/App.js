@@ -13,7 +13,7 @@ class CountDownTimer extends React.Component {
     super(props)
 
     this.state={
-      counter: props.counter, // jak pobrac wartość z this state counter do mojego inputa gdzie wpisuje mój Czas do zadania ?
+      counter: props.counter, 
     }
   }
 
@@ -49,7 +49,7 @@ class CountDownTimer extends React.Component {
     return(
       <div>
         <p>Name of Task: {this.props.title}</p> 
-        <p>Time Remaining: {this.state.counter}</p> 
+        <p>Time Remaining:{this.state.counter}</p> 
       </div>
     )
   }

@@ -1,7 +1,27 @@
 # Getting Started with Create React App
 
 Create React App is a popular toolchain for building simple apps.
-The goal of this repository is to show the process of my learning Create React App by creating a simple To Do list with timers . 🔥😊
+
+## Description
+
+This project is made independently and without any starter code.
+The goal of this repository is to show the process of my learning React by creating a simple To Do list with coundonw. 🔥😊
+
+## Status
+
+Project is: _in progress_,
+
+## The goal of this project is to practice:
+
+- Project setup to understanding the fundamentals of JavaScript for React (Requirements)
+- Nested JSX, the basic syntax of React.js
+- React Component composition
+- Components interacting
+- Handler Function in JSX
+- React Props
+- React State
+- Adding Lifecycle Methods to a Class
+  ...
 
 ## Available Scripts
 

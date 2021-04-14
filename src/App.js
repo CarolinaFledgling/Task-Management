@@ -13,16 +13,17 @@ class CountDownTimer extends React.Component {
     super(props)
 
     this.state={
-      counter: props.counter, 
+      counter: props.counter,
+
     }
   }
 
   componentDidMount(){
-    console.log('Uruchumienie licznika', {nazwa:this.props.title})
+    console.log('Start Coundown', {nazwa:this.props.title})
 
     this.intervalId=setInterval(()=>{
 
-      console.log('Aktualizuj licznik')
+      console.log('Start Timer')
      
 
       this.setState((prevState)=>{
@@ -43,13 +44,20 @@ class CountDownTimer extends React.Component {
   componentWillUnmount(){
       clearInterval(this.intervalId)
   }
-  
 
+  handleRemoveTask=(key)=>{
+   
+    const newList =
+    this.setState 
+  }
+  
+  key = this.props.key
   render(){
     return(
       <div>
         <p>Name of Task: {this.props.title}</p> 
-        <p>Time Remaining:{this.state.counter}</p> 
+        <p>Time Remaining:{this.state.counter}</p>
+        <button type="button" onClick={this.handleRemoveTask(key)}>Delete Task</button> 
       </div>
     )
   }
@@ -64,7 +72,14 @@ class App extends React.Component{
     this.inputFieldTime= React.createRef();
 
     this.state = {
-      listTasks: [],
+      listTasks: [
+        {
+          id:'1',
+          name:'Coś zrobic',
+          time: 5000,
+
+        }
+      ],
     }
 
   }
@@ -95,16 +110,20 @@ class App extends React.Component{
             <input ref={this.inputFieldText} type="text" placeholder="your task for today"></input>
             <input ref={this.inputFieldTime} type="number" placeholder="for how long"></input>
         </form>
-        <ul>
+        <button onClick={this.handlerAddTask}>Add task</button>
+        <ol>
             {
               this.state.listTasks.map(elem=>{
                 return (
-                  <CountDownTimer title={elem.name} counter={elem.time}/>
+                  <li>
+                    <CountDownTimer 
+                    title={elem.name} counter={elem.time} key={elem.id}/>
+                  </li>
                 )                                  
               })
             }
-          </ul>
-          <button onClick={this.handlerAddTask}>Add task</button>
+          </ol>
+      
       </div>
     )
   }

@@ -5,7 +5,7 @@ Create React App is a popular toolchain for building simple apps.
 ## Description
 
 This project is made independently and without any starter code.
-The goal of this repository is to show the process of my learning React by creating a simple To Do list with coundown. 🔥😊
+The goal of this repository is to show the process of my learning React by creating a simple To Do list  🔥😊
 
 ## Status
 

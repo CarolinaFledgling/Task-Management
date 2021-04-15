@@ -44,12 +44,11 @@ class CountDownTimer extends React.Component {
   componentWillUnmount(){
       clearInterval(this.intervalId)
   }
-
-  handleRemoveTask=(key)=>{
-   
-    const newList =
-    this.setState 
+  handelDeleteTask=()=>{
+    this.props.deleteTask(this.props.title)
   }
+
+
   
   key = this.props.key
   render(){
@@ -57,7 +56,7 @@ class CountDownTimer extends React.Component {
       <div>
         <p>Name of Task: {this.props.title}</p> 
         <p>Time Remaining:{this.state.counter}</p>
-        <button type="button" onClick={this.handleRemoveTask(key)}>Delete Task</button> 
+        <button type="button" onClick={this.handelDeleteTask}>Delete Task</button> 
       </div>
     )
   }
@@ -72,14 +71,7 @@ class App extends React.Component{
     this.inputFieldTime= React.createRef();
 
     this.state = {
-      listTasks: [
-        {
-          id:'1',
-          name:'Coś zrobic',
-          time: 5000,
-
-        }
-      ],
+      listTasks: [],
     }
 
   }
@@ -100,6 +92,12 @@ class App extends React.Component{
     });
   };
 
+  handleDeleteTask=(name)=>{
+    const filterTask= this.state.listTasks.filter((item)=>{
+      return item.name !== name;
+    })
+    this.setState({listTasks:filterTask})
+  }
 
 
   render(){
@@ -113,11 +111,10 @@ class App extends React.Component{
         <button onClick={this.handlerAddTask}>Add task</button>
         <ol>
             {
-              this.state.listTasks.map(elem=>{
+              this.state.listTasks.map((elem)=>{
                 return (
                   <li>
-                    <CountDownTimer 
-                    title={elem.name} counter={elem.time} key={elem.id}/>
+                    <CountDownTimer deleteTask={this.handleDeleteTask} title={elem.name} counter={elem.time} />
                   </li>
                 )                                  
               })

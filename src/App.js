@@ -13,27 +13,27 @@ class CountDownTimer extends React.Component {
     super(props)
 
     this.state={
-      counter: props.counter,
+      time: props.time,
 
     }
   }
 
   componentDidMount(){
-    console.log('Start Coundown', {nazwa:this.props.title})
+    // console.log('Start Coundown', {nazwa:this.props.name})
 
     this.intervalId=setInterval(()=>{
 
-      console.log('Start Timer')
+      // console.log('Start Timer')
      
 
       this.setState((prevState)=>{
 
-        if (prevState.counter === 1 ) {
+        if (prevState.time === 1 ) {
           clearInterval(this.intervalId)
           console.log('Ding!');
         }
         return{
-          counter: prevState.counter - 1,
+          time: prevState.time - 1,
         }
       })
     },1000)
@@ -44,8 +44,10 @@ class CountDownTimer extends React.Component {
   componentWillUnmount(){
       clearInterval(this.intervalId)
   }
+
+  // deleting task 
   handelDeleteTask=()=>{
-    this.props.deleteTask(this.props.title)
+    this.props.deleteTask(this.props.name)
   }
 
 
@@ -54,8 +56,8 @@ class CountDownTimer extends React.Component {
   render(){
     return(
       <div>
-        <p>Name of Task: {this.props.title}</p> 
-        <p>Time Remaining:{this.state.counter}</p>
+        <p>Name of Task: {this.props.name}</p> 
+        <p>Time Remaining:{this.state.time}</p>
         <button type="button" onClick={this.handelDeleteTask}>Delete Task</button> 
       </div>
     )
@@ -99,6 +101,12 @@ class App extends React.Component{
     this.setState({listTasks:filterTask})
   }
 
+  handleDeleteAllTasks=()=>{
+  console.log('Moja lista',this.state.listTasks)
+  return this.setState({listTasks:[]})
+
+  }
+
 
   render(){
     return(
@@ -109,12 +117,13 @@ class App extends React.Component{
             <input ref={this.inputFieldTime} type="number" placeholder="for how long"></input>
         </form>
         <button onClick={this.handlerAddTask}>Add task</button>
+        <button onClick={this.handleDeleteAllTasks}>Clean tasks</button>
         <ol>
             {
               this.state.listTasks.map((elem)=>{
                 return (
                   <li>
-                    <CountDownTimer deleteTask={this.handleDeleteTask} title={elem.name} counter={elem.time} />
+                    <CountDownTimer deleteTask={this.handleDeleteTask} name={elem.name} time={elem.time} />
                   </li>
                 )                                  
               })

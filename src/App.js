@@ -70,6 +70,7 @@ class App extends React.Component{
 
     this.state = {
       listTasks: [],
+      searchResult:[],
     }
 
   }
@@ -86,6 +87,7 @@ class App extends React.Component{
       }]
       return {
         listTasks: newListTasks,
+        
       };
     });
   };
@@ -108,10 +110,25 @@ class App extends React.Component{
   handleSearchValue =()=>{
     const valueOfSearchinput= this.inputSearchValue.current.value;
     console.log(valueOfSearchinput)
+
+    // used spread operator to copy array , don`t mutate the original array 
+    const newList =[...this.state.listTasks]
+
+    const filteredItem = newList.filter((element)=>{
+      return element.name.toLowerCase().includes(valueOfSearchinput.toLowerCase())
+    })
+    console.log("Array with filtered value", filteredItem)
+    this.setState({searchResult:filteredItem})
   }
 
 
   render(){
+
+    const filterResults = this.state.searchResult.map((element)=>{
+      return (
+        <CountDownTimer name={element.name} time={element.time}/>
+      )
+    })
     return(
       <div className='App'>
         <div className="layout">
@@ -140,7 +157,7 @@ class App extends React.Component{
             <div className="flex-righ">
               <input ref={this.inputSearchValue} onChange={this.handleSearchValue} type="text" placeholder="Search.."></input>
               <button >Usuń</button>
-              <ol></ol>        
+              <ol>{filterResults}</ol>        
              </div>
 
 

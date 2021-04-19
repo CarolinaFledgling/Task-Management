@@ -121,6 +121,12 @@ class App extends React.Component{
     this.setState({searchResult:filteredItem})
   }
 
+  // Delete All tasks in Seach bar 
+
+  handleDeleteSearchTask=()=>{
+    this.setState({ searchResult: [] })
+  }
+
 
   render(){
 
@@ -156,7 +162,7 @@ class App extends React.Component{
               
             <div className="flex-righ">
               <input ref={this.inputSearchValue} onChange={this.handleSearchValue} type="text" placeholder="Search.."></input>
-              <button >Usuń</button>
+              <button onClick={this.handleDeleteSearchTask}>Delete Tasks</button>
               <ol>{filterResults}</ol>        
              </div>
 

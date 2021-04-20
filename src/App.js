@@ -52,7 +52,7 @@ class CountDownTimer extends React.Component {
       <div>
         <p>Name of Task: {this.props.name}</p> 
         <p>Time Remaining:{this.state.time}</p>
-        <button type="button" onClick={this.handelDeleteTask}>Delete Task</button> 
+        <button type="button" onClick={this.handelDeleteTask} style={{ display: this.props.isDeleteVisible ? "block" : "none" }}>Delete Task</button> 
       </div>
     )
   }
@@ -130,9 +130,11 @@ class App extends React.Component{
 
   render(){
 
-    const filterResults = this.state.searchResult.map((element)=>{
+    const filterResults = this.state.searchResult.map((element, isDeleteBtnVisible = false)=>{
       return (
-        <CountDownTimer name={element.name} time={element.time}/>
+        <li>
+        <CountDownTimer isDeleteBtnVisible={isDeleteBtnVisible} name={element.name} time={element.time}/>
+        </li>
       )
     })
     return(
@@ -159,7 +161,7 @@ class App extends React.Component{
                     }
                   </ol>
             </div>
-              
+              {/* Search bar */}
             <div className="flex-righ">
               <input ref={this.inputSearchValue} onChange={this.handleSearchValue} type="text" placeholder="Search.."></input>
               <button onClick={this.handleDeleteSearchTask}>Delete Tasks</button>

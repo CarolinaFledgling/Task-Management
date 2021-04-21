@@ -45,9 +45,6 @@ class CountDownTimer extends React.Component {
     this.props.deleteTask(this.props.name)
   }
 
-
-  
-  key = this.props.key
   render(){
     return(
       <div>
@@ -94,10 +91,15 @@ class App extends React.Component{
   };
 
   handleDeleteTask=(name)=>{
-    const filterTask= this.state.listTasks.filter((item)=>{
+
+    this.setState((prevState)=>{
+      const filterTask= prevState.listTasks.filter((item)=>{
       return item.name !== name;
+      })
+      return {
+        listTasks:filterTask
+      }
     })
-    this.setState({listTasks:filterTask})
   }
 
   handleDeleteAllTasks=()=>{
@@ -109,17 +111,20 @@ class App extends React.Component{
   // Szukanie elementów 
 
   handleSearchValue =()=>{
-    const valueOfSearchinput= this.inputSearchValue.current.value;
-    console.log(valueOfSearchinput)
+    const valueOfSearchInput= this.inputSearchValue.current.value;
+    console.log(valueOfSearchInput)
 
-    // used spread operator to copy array , don`t mutate the original array 
-    const newList =[...this.state.listTasks]
+    this.setState((prevState)=>{
 
-    const filteredItem = newList.filter((element)=>{
-      return element.name.toLowerCase().includes(valueOfSearchinput.toLowerCase())
+      const filteredItem = prevState.listTasks.filter((element)=>{
+      return element.name.toLowerCase().includes(valueOfSearchInput.toLowerCase())
     })
-    console.log("Array with filtered value", filteredItem)
-    this.setState({searchResult:filteredItem})
+
+        return {
+          searchResult: filteredItem,
+        }
+    })
+   
   }
 
   // Delete All tasks in Seach bar 

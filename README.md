@@ -15,7 +15,7 @@ Project is: _in progress_,
 
 - Project setup to understanding the fundamentals of JavaScript for React (Requirements)
 - Nested JSX, the basic syntax of React.js
-- React Component composition
+- React Component syntax ( first to get to know better a Class Component later a Function Component)
 - Components interacting
 - Handler Function in JSX
 - React Props

@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-Create React App is a popular toolchain for building simple apps.
+Create React App is a popular toolchain for building apps.
 
 ## Description
 

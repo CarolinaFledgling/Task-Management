@@ -7,6 +7,7 @@ import React from 'react';
 
 class CountDownTimer extends React.Component {
 
+  static defaultProps = {isDeleteVisible:true}
   intervalId=null;
 
   constructor(props){
@@ -130,10 +131,10 @@ class App extends React.Component{
 
   render(){
 
-    const filterResults = this.state.searchResult.map((element, isDeleteBtnVisible = false)=>{
+    const filterResults = this.state.searchResult.map((element)=>{
       return (
         <li>
-        <CountDownTimer isDeleteBtnVisible={isDeleteBtnVisible} name={element.name} time={element.time}/>
+        <CountDownTimer isDeleteVisible={false} name={element.name} time={element.time}/>
         </li>
       )
     })
@@ -154,7 +155,7 @@ class App extends React.Component{
                       this.state.listTasks.map((elem)=>{
                         return (
                           <li>
-                            <CountDownTimer deleteTask={this.handleDeleteTask} name={elem.name} time={elem.time} />
+                            <CountDownTimer  deleteTask={this.handleDeleteTask} name={elem.name} time={elem.time} />
                           </li>
                         )                                  
                       })

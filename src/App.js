@@ -42,7 +42,7 @@ class CountDownTimer extends React.Component {
 
   // deleting task 
   handelDeleteTask=()=>{
-    this.props.deleteTask(this.props.name)
+    this.props.deleteTask(this.props.name, this.props.element)
   }
 
   render(){
@@ -50,7 +50,7 @@ class CountDownTimer extends React.Component {
       <div>
         <p>Name of Task: {this.props.name}</p> 
         <p>Time Remaining:{this.state.time}</p>
-        <button type="button" onClick={this.handelDeleteTask} style={{ display: this.props.isDeleteVisible ? "block" : "none" }}>Delete Task</button> 
+        <button type="button" onClick={this.handelDeleteTask} >Delete Task</button> 
       </div>
     )
   }
@@ -90,16 +90,27 @@ class App extends React.Component{
     });
   };
 
-  handleDeleteTask=(name)=>{
+  handleDeleteTask=(index, element)=> {
+    const positionItemListTask = this.state.listTasks.indexOf(element)
+    const positionItemSearchResultList = this.state.searchResult.indexOf(element)
 
-    this.setState((prevState)=>{
-      const filterTask= prevState.listTasks.filter((item)=>{
-      return item.name !== name;
-      })
-      return {
-        listTasks:filterTask
-      }
-    })
+    console.log('kliknieto usun item:', { index, element, positionItemListTask, positionItemSearchResultList} );  
+
+    if(positionItemListTask > -1) {
+
+      const newListOfTasks = [...this.state.listTasks]
+      newListOfTasks.splice(positionItemListTask, 1)
+
+      this.setState({listTasks: newListOfTasks})
+
+    }
+
+    if(positionItemSearchResultList > -1) {
+      const newListOfResultSearch = [...this.state.searchResult]
+      newListOfResultSearch.splice(positionItemSearchResultList, 1)
+
+      this.setState({searchResult:newListOfResultSearch})
+    }
   }
 
   handleDeleteAllTasks=()=>{
@@ -136,10 +147,10 @@ class App extends React.Component{
 
   render(){
 
-    const filterResults = this.state.searchResult.map((element)=>{
+    const filterResults = this.state.searchResult.map((element, index)=>{
       return (
         <li>
-        <CountDownTimer isDeleteVisible={false} name={element.name} time={element.time}/>
+        <CountDownTimer deleteTask={this.handleDeleteTask} name={element.name} time={element.time} element={element} index={index}/>
         </li>
       )
     })
@@ -157,10 +168,10 @@ class App extends React.Component{
                 <button onClick={this.handleDeleteAllTasks}>Clean tasks</button>
                 <ol>
                     {
-                      this.state.listTasks.map((elem)=>{
+                      this.state.listTasks.map((element, index)=>{
                         return (
                           <li>
-                            <CountDownTimer  deleteTask={this.handleDeleteTask} name={elem.name} time={elem.time} />
+                            <CountDownTimer  deleteTask={this.handleDeleteTask} index={index} name={element.name} time={element.time} element={element}/>
                           </li>
                         )                                  
                       })

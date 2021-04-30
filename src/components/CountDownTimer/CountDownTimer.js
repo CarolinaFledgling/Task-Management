@@ -1,4 +1,5 @@
 import React from 'react'
+import NameTask from '../NameTask/NameTask'
 
 class CountDownTimer extends React.Component {
 
@@ -43,9 +44,16 @@ class CountDownTimer extends React.Component {
     render(){
       return(
         <div>
-          <p>Name of Task: {this.props.name}</p> 
-          <p>Time Remaining:{this.state.time}</p>
-          <button type="button" onClick={this.handelDeleteTask} >Delete Task</button> 
+          
+          <NameTask name={this.props.name}/>
+          <p>Time Remaining: {this.state.time}</p>
+          <div>
+            <button disabled={this.props.isRunning}>Start</button>
+            <button disabled={!this.props.isRunning}>Stop</button>
+            <button disabled={!this.props.isRunning}>Pauza</button>
+            <p>Liczba przerw : {this.props.countPausa}</p>
+          </div>
+          <button type="button" onClick={this.handelDeleteTask} >Delete Task</button>
         </div>
       )
     }

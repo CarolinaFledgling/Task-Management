@@ -15,6 +15,9 @@ class App extends React.Component{
     this.state = {
       listTasks: [],
       searchResult:[],
+      isRunning:true,
+      isPaused:false,
+      pausesCount:0,
     }
 
   }
@@ -28,12 +31,15 @@ class App extends React.Component{
       const newListTasks = [...prevState.listTasks, {
         name:inputTaskText,
         time:inputTimeTask,
-      }]
+        } ]  
+        console.log(Array.isArray(newListTasks))
       return {
         listTasks: newListTasks,
         
       };
+     
     });
+    
   };
 
   handleDeleteTask=(index, element)=> {
@@ -92,11 +98,20 @@ class App extends React.Component{
 
 
   render(){
+    const{isPaused, isRunning,pausesCount}= this.state;
 
     const filterResults = this.state.searchResult.map((element, index)=>{
       return (
         <li>
-        <CountDownTimer deleteTask={this.handleDeleteTask} name={element.name} time={element.time} element={element} index={index}/>
+        <CountDownTimer 
+        isRunning={isRunning} 
+        isPaused={isPaused} 
+        countPausa={pausesCount} 
+        deleteTask={this.handleDeleteTask} 
+        name={element.name} 
+        time={element.time} 
+        element={element} 
+        index={index}/>
         </li>
       )
     })
@@ -117,7 +132,14 @@ class App extends React.Component{
                       this.state.listTasks.map((element, index)=>{
                         return (
                           <li>
-                            <CountDownTimer  deleteTask={this.handleDeleteTask} index={index} name={element.name} time={element.time} element={element}/>
+                            <CountDownTimer 
+                            isRunning={isRunning} 
+                            isPaused={isPaused} 
+                            countPausa={pausesCount} 
+                            deleteTask={this.handleDeleteTask} 
+                            index={index} name={element.name} 
+                            time={element.time} 
+                            element={element}/>
                           </li>
                         )                                  
                       })

@@ -95,6 +95,12 @@ class App extends React.Component{
   handleDeleteSearchTask=()=>{
     this.setState({ searchResult: [] })
   }
+  // -------------------------------------------------------------------------------------------//
+  //  functionality for the CountDown
+
+  handleStopBtnCountDown=()=>{
+    console.log('dziala')
+  }
 
 
   render(){
@@ -102,8 +108,10 @@ class App extends React.Component{
 
     const filterResults = this.state.searchResult.map((element, index)=>{
       return (
-        <li>
-        <CountDownTimer 
+        <li key={element.id}>
+        <CountDownTimer
+        // key={element.id}
+        onStopCountDown={this.handleStopBtnCountDown}  ////tutaj nie działa przekazanie do CountDown
         isRunning={isRunning} 
         isPaused={isPaused} 
         countPausa={pausesCount} 
@@ -111,7 +119,10 @@ class App extends React.Component{
         name={element.name} 
         time={element.time} 
         element={element} 
-        index={index}/>
+        index={index}
+       
+        />
+        
         </li>
       )
     })
@@ -131,15 +142,19 @@ class App extends React.Component{
                     {
                       this.state.listTasks.map((element, index)=>{
                         return (
-                          <li>
-                            <CountDownTimer 
+                          <li key={element.id}>
+                            <CountDownTimer
+                            // key={element.id} 
                             isRunning={isRunning} 
                             isPaused={isPaused} 
                             countPausa={pausesCount} 
                             deleteTask={this.handleDeleteTask} 
                             index={index} name={element.name} 
                             time={element.time} 
-                            element={element}/>
+                            element={element}
+
+                            />
+                            
                           </li>
                         )                                  
                       })

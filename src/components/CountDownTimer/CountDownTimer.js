@@ -40,6 +40,13 @@ class CountDownTimer extends React.Component {
     handelDeleteTask=()=>{
       this.props.deleteTask(this.props.name, this.props.element)
     }
+
+    // --------------------------------------------------------------------------------//
+    // Handle STOP PAUSA START 
+
+    handleStopButton=()=>{ //tutaj po kliknieciu powinno wywołac console log z napisem działa 
+        this.props.onStopCountDown()
+    }
   
     render(){
       return(
@@ -47,12 +54,12 @@ class CountDownTimer extends React.Component {
           
           <NameTask name={this.props.name}/>
           <p>Time Remaining: {this.state.time}</p>
-          <div>
-            <button disabled={this.props.isRunning}>Start</button>
-            <button disabled={!this.props.isRunning}>Stop</button>
-            <button disabled={!this.props.isRunning}>Pauza</button>
-            <p>Liczba przerw : {this.props.countPausa}</p>
-          </div>
+          
+            <button type="button" disabled={this.props.isRunning}>Start</button>
+            <button type="button" onClick={this.handleStopButton} disabled={!this.props.isRunning} >Stop</button>
+            <button type="button" disabled={!this.props.isRunning}>{this.props.isPaused ? 'Continue': 'Pause'}</button>
+            <p>Number of breaks : {this.props.countPausa}</p>
+          
           <button type="button" onClick={this.handelDeleteTask} >Delete Task</button>
         </div>
       )

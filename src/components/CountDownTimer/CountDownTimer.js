@@ -41,10 +41,12 @@ class CountDownTimer extends React.Component {
       this.props.deleteTask(this.props.name, this.props.element)
     }
 
+
     // --------------------------------------------------------------------------------//
     // Handle STOP PAUSA START 
 
     handleStopButton=()=>{ //tutaj po kliknieciu powinno wywołac console log z napisem działa 
+  
         this.props.onStopCountDown()
     }
   

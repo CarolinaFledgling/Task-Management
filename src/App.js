@@ -98,8 +98,15 @@ class App extends React.Component{
   // -------------------------------------------------------------------------------------------//
   //  functionality for the CountDown
 
+
   handleStopBtnCountDown=()=>{
+ 
     console.log('dziala')
+    this.setState({
+      isRunning:false,
+      isPaused:false,
+      pausesCount:0
+    })
   }
 
 
@@ -111,7 +118,7 @@ class App extends React.Component{
         <li key={element.id}>
         <CountDownTimer
         // key={element.id}
-        onStopCountDown={this.handleStopBtnCountDown}  ////tutaj nie działa przekazanie do CountDown
+        onStopCountDown={this.handleStopBtnCountDown} 
         isRunning={isRunning} 
         isPaused={isPaused} 
         countPausa={pausesCount} 
@@ -144,7 +151,8 @@ class App extends React.Component{
                         return (
                           <li key={element.id}>
                             <CountDownTimer
-                            // key={element.id} 
+                            // key={element.id}
+                            onStopCountDown={this.handleStopBtnCountDown} 
                             isRunning={isRunning} 
                             isPaused={isPaused} 
                             countPausa={pausesCount} 

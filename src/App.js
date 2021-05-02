@@ -7,8 +7,8 @@ class App extends React.Component{
   constructor(props){
     super(props)
 
-    this.inputFieldText= React.createRef();
-    this.inputFieldTime= React.createRef();
+    // this.inputFieldText= React.createRef();
+    // this.inputFieldTime= React.createRef();
 
     this.inputSearchValue=React.createRef();
 
@@ -18,19 +18,22 @@ class App extends React.Component{
       isRunning:true,
       isPaused:false,
       pausesCount:0,
+      elapsedTimeinSeconds: 0, // czas upłynięty w sekundach
+      inputFieldText:'Uczę sie Reacta',
+      inputFieldTime:15, 
     }
 
   }
 
   handlerAddTask = () => {
-    const inputTaskText= this.inputFieldText.current.value;
-    const inputTimeTask=this.inputFieldTime.current.value;
-    console.log(inputTaskText,inputTimeTask)
+    // const inputTaskText= this.inputFieldText.current.value;
+    // const inputTimeTask=this.inputFieldTime.current.value;
+    // console.log(inputTaskText,inputTimeTask)
 
     this.setState((prevState)=>{
       const newListTasks = [...prevState.listTasks, {
-        name:inputTaskText,
-        time:inputTimeTask,
+        name:prevState.inputFieldText,
+        time:prevState.inputFieldTime,
         } ]  
         console.log(Array.isArray(newListTasks))
       return {
@@ -90,6 +93,18 @@ class App extends React.Component{
    
   }
 
+// ------------------------------------------------------------------------------//
+// onChange komponenn kontrolowany 
+
+handleOnChangeInputText=(e)=>{
+  this.setState({inputFieldText:e.target.value})
+}
+
+handleOnChangeInputTime=(e)=>{
+  this.setState({inputFieldTime:e.target.value})
+}
+
+
   // Delete All tasks in Seach bar 
 
   handleDeleteSearchTask=()=>{
@@ -101,23 +116,78 @@ class App extends React.Component{
 
   handleStopBtnCountDown=()=>{
  
-    console.log('dziala')
+    console.log('dziala stop')
     this.setState({
       isRunning:false,
       isPaused:false,
-      pausesCount:0
+      pausesCount:0,
+      elapsedTimeinSeconds: 0
     })
+    this.stopTimer()
+  }
+
+  handleStartBtnCountDown=()=>{
+    console.log('działa start')
+    this.setState({
+      isRunning:true,
+   
+    })
+    this.startTimer()
+  }
+
+  handleTogglePause=()=>{
+    this.setState(
+      function(prevState){
+        const isPaused = !prevState.isPaused // liczba przerw zalezy od aktualnego stanu isPaused
+        if(isPaused){
+          this.stopTimer()
+        }else{
+          this.startTimer()
+        }
+        return{
+          isPaused:!prevState.isPaused,
+          pausesCount: isPaused ? prevState.pausesCount + 1 :prevState.pausesCount //jeśli jestesmy w trakcie przerwy to aktualna wartosc jest rowna poprzedniej wartosci + 1, jesli nie to zwracamy poprzrdnia wartosc
+        }
+      }
+    )
+  }
+
+  startTimer(){
+    this.intervalId=window.setInterval(
+      function(){
+        this.setState(
+          (prevState)=>({
+            elapsedTimeinSeconds: prevState.elapsedTimeinSeconds + 1
+          })
+        )
+      }.bind(this), 1000
+    )
+
+  }
+
+  stopTimer(){
+    window.clearInterval(this.intervalId)
   }
 
 
   render(){
-    const{isPaused, isRunning,pausesCount}= this.state;
+    //elapsedTimeinSecond czas ktory upłynal
+    const{isPaused, isRunning,pausesCount, elapsedTimeinSeconds}= this.state;
+    const totalTimeinSeconds= 25; // całkowity czas w sekundach
+    const timeLeftinSeconds = totalTimeinSeconds -elapsedTimeinSeconds // ile czasu zostalo nam w sekundach
+    const minutesLeft = Math.floor(timeLeftinSeconds / 60) 
+    const secondsLeft = Math.floor(timeLeftinSeconds%60) // reszta z dzielenia 
+
 
     const filterResults = this.state.searchResult.map((element, index)=>{
       return (
         <li key={element.id}>
         <CountDownTimer
         // key={element.id}
+        minutes={minutesLeft}
+        seconds={secondsLeft}
+        onTogglePause={this.handleTogglePause}
+        onStartCountDwon={this.handleStartBtnCountDown}
         onStopCountDown={this.handleStopBtnCountDown} 
         isRunning={isRunning} 
         isPaused={isPaused} 
@@ -140,8 +210,8 @@ class App extends React.Component{
           <div className="flex-left">
                 <h1>Timer`s to Do Lists</h1>
                 <form>
-                    <input ref={this.inputFieldText} type="text" placeholder="your task for today"></input>
-                    <input ref={this.inputFieldTime} type="number" placeholder="for how long"></input>
+                    <input value={this.state.inputFieldText} onChange={this.handleOnChangeInputText} type="text" placeholder="your task for today"></input>
+                    <input value={this.state.inputFieldTime} onChange={this.handleOnChangeInputTime} type="number" placeholder="for how long"></input>
                 </form>
                 <button onClick={this.handlerAddTask}>Add task</button>
                 <button onClick={this.handleDeleteAllTasks}>Clean tasks</button>
@@ -152,6 +222,10 @@ class App extends React.Component{
                           <li key={element.id}>
                             <CountDownTimer
                             // key={element.id}
+                            minutes={minutesLeft}
+                            seconds={secondsLeft}
+                            onTogglePause={this.handleTogglePause}
+                            onStartCountDwon={this.handleStartBtnCountDown}
                             onStopCountDown={this.handleStopBtnCountDown} 
                             isRunning={isRunning} 
                             isPaused={isPaused} 

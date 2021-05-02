@@ -1,5 +1,6 @@
 import React from 'react'
 import NameTask from '../NameTask/NameTask'
+import './CountDown.css'
 
 class CountDownTimer extends React.Component {
 
@@ -45,21 +46,28 @@ class CountDownTimer extends React.Component {
     // --------------------------------------------------------------------------------//
     // Handle STOP PAUSA START 
 
-    handleStopButton=()=>{ //tutaj po kliknieciu powinno wywołac console log z napisem działa 
-  
+    handleStopButton=()=>{ 
         this.props.onStopCountDown()
+    }
+
+    handleStartButton=()=>{
+        this.props.onStartCountDwon()
+    }
+    handleTogglePause=()=>{
+        this.props.onTogglePause()
     }
   
     render(){
       return(
-        <div>
+        <div className={this.props.isPaused ? 'inactive': ''}>
           
           <NameTask name={this.props.name}/>
-          <p>Time Remaining: {this.state.time}</p>
+          {/* <p>Time Remaining: {this.state.time}</p> */}
+          <p>Time Remaining: {this.props.minutes}: {this.props.seconds}</p>
           
-            <button type="button" disabled={this.props.isRunning}>Start</button>
+            <button type="button" onClick={this.handleStartButton}disabled={this.props.isRunning}>Start</button>
             <button type="button" onClick={this.handleStopButton} disabled={!this.props.isRunning} >Stop</button>
-            <button type="button" disabled={!this.props.isRunning}>{this.props.isPaused ? 'Continue': 'Pause'}</button>
+            <button type="button" onClick={this.handleTogglePause} disabled={!this.props.isRunning}>{this.props.isPaused ? 'Continue': 'Pause'} </button>
             <p>Number of breaks : {this.props.countPausa}</p>
           
           <button type="button" onClick={this.handelDeleteTask} >Delete Task</button>

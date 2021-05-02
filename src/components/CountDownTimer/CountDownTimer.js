@@ -16,26 +16,26 @@ class CountDownTimer extends React.Component {
       }
     }
   
-    componentDidMount(){
-      this.intervalId=setInterval(()=>{
-          this.setState((prevState)=>{
+    // componentDidMount(){
+    //   this.intervalId=setInterval(()=>{
+    //       this.setState((prevState)=>{
   
-          if (prevState.time === 1 ) {
-            clearInterval(this.intervalId)
-            console.log('Ding!');
-          }
-          return{
-            time: prevState.time - 1,
-          }
-        })
-      },1000)
+    //       if (prevState.time === 1 ) {
+    //         clearInterval(this.intervalId)
+    //         console.log('Ding!');
+    //       }
+    //       return{
+    //         time: prevState.time - 1,
+    //       }
+    //     })
+    //   },1000)
   
-    }
+    // }
   
   
-    componentWillUnmount(){
-        clearInterval(this.intervalId)
-    }
+    // componentWillUnmount(){
+    //     clearInterval(this.intervalId)
+    // }
   
     // deleting task 
     handelDeleteTask=()=>{
@@ -58,17 +58,16 @@ class CountDownTimer extends React.Component {
     }
   
     render(){
+        const {isPaused, minutes, seconds, isRunning, countPausa}=this.props  
       return(
-        <div className={this.props.isPaused ? 'inactive': ''}>
+        <div className={isPaused ? 'inactive': ''}>
           
           <NameTask name={this.props.name}/>
-          {/* <p>Time Remaining: {this.state.time}</p> */}
-          <p>Time Remaining: {this.props.minutes} : {this.props.seconds< 10 ? '00': this.props.seconds}</p>
-          
-            <button type="button" onClick={this.handleStartButton}disabled={this.props.isRunning}>Start</button>
-            <button type="button" onClick={this.handleStopButton} disabled={!this.props.isRunning} >Stop</button>
-            <button type="button" onClick={this.handleTogglePause} disabled={!this.props.isRunning}>{this.props.isPaused ? 'Continue': 'Pause'} </button>
-            <p>Number of breaks : {this.props.countPausa}</p>
+          <p>Time Remaining: {minutes} : {seconds < 10 ? '00': seconds}</p>
+            <button type="button" onClick={this.handleStartButton}disabled={isRunning}>Start</button>
+            <button type="button" onClick={this.handleStopButton} disabled={!isRunning} >Stop</button>
+            <button type="button" onClick={this.handleTogglePause} disabled={!isRunning}>{isPaused ? 'Continue': 'Pause'} </button>
+            <p>Number of breaks : {countPausa}</p>
           
           <button type="button" onClick={this.handelDeleteTask} >Delete Task</button>
         </div>

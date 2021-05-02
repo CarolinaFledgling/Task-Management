@@ -6,10 +6,6 @@ import CountDownTimer from './components/CountDownTimer/CountDownTimer'
 class App extends React.Component{
   constructor(props){
     super(props)
-
-    // this.inputFieldText= React.createRef();
-    // this.inputFieldTime= React.createRef();
-
     this.inputSearchValue=React.createRef();
 
     this.state = {
@@ -26,10 +22,6 @@ class App extends React.Component{
   }
 
   handlerAddTask = () => {
-    // const inputTaskText= this.inputFieldText.current.value;
-    // const inputTimeTask=this.inputFieldTime.current.value;
-    // console.log(inputTaskText,inputTimeTask)
-
     this.setState((prevState)=>{
       const newListTasks = [...prevState.listTasks, {
         name:prevState.inputFieldText,
@@ -146,7 +138,7 @@ handleOnChangeInputTime=(e)=>{
         }
         return{
           isPaused:!prevState.isPaused,
-          pausesCount: isPaused ? prevState.pausesCount + 1 :prevState.pausesCount //jeśli jestesmy w trakcie przerwy to aktualna wartosc jest rowna poprzedniej wartosci + 1, jesli nie to zwracamy poprzrdnia wartosc
+          pausesCount: isPaused ? prevState.pausesCount + 1 : prevState.pausesCount //jeśli jestesmy w trakcie przerwy to aktualna wartosc jest rowna poprzedniej wartosci + 1, jesli nie to zwracamy poprzrdnia wartosc
         }
       }
     )
@@ -172,18 +164,18 @@ handleOnChangeInputTime=(e)=>{
 
   render(){
     //elapsedTimeinSecond czas ktory upłynal
-    const{isPaused, isRunning,pausesCount, elapsedTimeinSeconds,  inputFieldTime}= this.state;
+    const {isPaused, isRunning,pausesCount, elapsedTimeinSeconds,  inputFieldTime}= this.state;
     const totalTimeinSeconds= inputFieldTime * 60; // całkowity czas w sekundach
     const timeLeftinSeconds = totalTimeinSeconds - elapsedTimeinSeconds // ile czasu zostalo nam w sekundach
     const minutesLeft = Math.floor(timeLeftinSeconds / 60) 
-    const secondsLeft = Math.floor(timeLeftinSeconds%60) // reszta z dzielenia 
+    const secondsLeft = Math.floor(timeLeftinSeconds % 60) // reszta z dzielenia 
 
 
     const filterResults = this.state.searchResult.map((element, index)=>{
       return (
-        <li key={element.id}>
+        <li>
         <CountDownTimer
-        // key={element.id}
+        key={element.id}
         minutes={minutesLeft}
         seconds={secondsLeft}
         onTogglePause={this.handleTogglePause}
@@ -219,9 +211,9 @@ handleOnChangeInputTime=(e)=>{
                     {
                       this.state.listTasks.map((element, index)=>{
                         return (
-                          <li key={element.id}>
+                          <li>
                             <CountDownTimer
-                            // key={element.id}
+                            key={element.id}
                             minutes={minutesLeft}
                             seconds={secondsLeft}
                             onTogglePause={this.handleTogglePause}

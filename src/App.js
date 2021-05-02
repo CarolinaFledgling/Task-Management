@@ -15,12 +15,12 @@ class App extends React.Component{
     this.state = {
       listTasks: [],
       searchResult:[],
-      isRunning:true,
+      isRunning:false,
       isPaused:false,
       pausesCount:0,
       elapsedTimeinSeconds: 0, // czas upłynięty w sekundach
       inputFieldText:'Uczę sie Reacta',
-      inputFieldTime:15, 
+      inputFieldTime:0, 
     }
 
   }
@@ -172,9 +172,9 @@ handleOnChangeInputTime=(e)=>{
 
   render(){
     //elapsedTimeinSecond czas ktory upłynal
-    const{isPaused, isRunning,pausesCount, elapsedTimeinSeconds}= this.state;
-    const totalTimeinSeconds= 25; // całkowity czas w sekundach
-    const timeLeftinSeconds = totalTimeinSeconds -elapsedTimeinSeconds // ile czasu zostalo nam w sekundach
+    const{isPaused, isRunning,pausesCount, elapsedTimeinSeconds,  inputFieldTime}= this.state;
+    const totalTimeinSeconds= inputFieldTime * 60; // całkowity czas w sekundach
+    const timeLeftinSeconds = totalTimeinSeconds - elapsedTimeinSeconds // ile czasu zostalo nam w sekundach
     const minutesLeft = Math.floor(timeLeftinSeconds / 60) 
     const secondsLeft = Math.floor(timeLeftinSeconds%60) // reszta z dzielenia 
 

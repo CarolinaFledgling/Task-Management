@@ -63,7 +63,7 @@ class CountDownTimer extends React.Component {
           
           <NameTask name={this.props.name}/>
           {/* <p>Time Remaining: {this.state.time}</p> */}
-          <p>Time Remaining: {this.props.minutes}: {this.props.seconds}</p>
+          <p>Time Remaining: {this.props.minutes} : {this.props.seconds< 10 ? '00': this.props.seconds}</p>
           
             <button type="button" onClick={this.handleStartButton}disabled={this.props.isRunning}>Start</button>
             <button type="button" onClick={this.handleStopButton} disabled={!this.props.isRunning} >Stop</button>

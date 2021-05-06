@@ -4,6 +4,7 @@ import React from 'react';
 import CountDownTimer from './components/CountDownTimer/CountDownTimer'
 
 class App extends React.Component {
+  intervalId = null;
   constructor(props) {
     super(props)
     this.inputSearchValue = React.createRef();
@@ -17,26 +18,30 @@ class App extends React.Component {
       elapsedTimeinSeconds: 0, // czas upłynięty w sekundach
       inputFieldText: 'Uczę sie Reacta',
       inputFieldTime: 0,
+      activeTask: [],
     }
-
   }
+
+
+
+
+  // Adding tasks , gathering value from input 
 
   handlerAddTask = () => {
     this.setState((prevState) => {
       const newListTasks = [...prevState.listTasks, {
         name: prevState.inputFieldText,
         time: prevState.inputFieldTime,
+        isRunning: false,
       }]
-      console.log(Array.isArray(newListTasks))
+
       return {
         listTasks: newListTasks,
-
       };
-
     });
-
   };
 
+  // Deleting tasks from both lists 
   handleDeleteTask = (index, element) => {
     const positionItemListTask = this.state.listTasks.indexOf(element)
     const positionItemSearchResultList = this.state.searchResult.indexOf(element)
@@ -56,13 +61,17 @@ class App extends React.Component {
     }
   }
 
+  // Deleting all tasks from main list 
   handleDeleteAllTasks = () => {
     console.log('Moja lista', this.state.listTasks)
     return this.setState({ listTasks: [] })
   }
+  // Deleting all tasks from list from SearchBar
+  handleDeleteSearchTask = () => {
+    this.setState({ searchResult: [] })
+  }
 
-  // Szukanie elementów 
-
+  // Searching  tasks in SearchBar 
   handleSearchValue = () => {
     const valueOfSearchInput = this.inputSearchValue.current.value;
     console.log(valueOfSearchInput)
@@ -75,11 +84,10 @@ class App extends React.Component {
         searchResult: filteredItem,
       }
     })
-
   }
 
   // ------------------------------------------------------------------------------//
-  // onChange - komponenn kontrolowany 
+  //komponenn kontrolowany 
 
   handleOnChangeInputText = (e) => {
     this.setState({ inputFieldText: e.target.value })
@@ -90,12 +98,9 @@ class App extends React.Component {
   }
 
 
-  // usuniecie wszystkich zadan w wyszukiwarce 
-  handleDeleteSearchTask = () => {
-    this.setState({ searchResult: [] })
-  }
   // -------------------------------------------------------------------------------------------//
-  //  funkcjonalnosc guzików start stop i pauza dla licznika 
+
+  //  functionality start stop & pause 
 
 
   handleStopBtnCountDown = () => {
@@ -134,26 +139,29 @@ class App extends React.Component {
     )
   }
 
-  // funkcja start Timer powinna byc chyba  w componentDidMount()  - ale mam bład z składnia ?  
-  // componentDidMount() {}
+  componentDidMount() {
+    this.startTimer()
+  }
 
-  startTimer() {
-    this.intervalId = window.setInterval(
-      function () {
-        this.setState(
-          (prevState) => ({
-            elapsedTimeinSeconds: prevState.elapsedTimeinSeconds + 1
-          })
-        )
-      }.bind(this), 1000
+  startTimer = () => {
+    this.intervalId = setInterval(() => {
+      this.setState(
+        (prevState) => ({
+          elapsedTimeinSeconds: prevState.elapsedTimeinSeconds + 1
+        })
+      )
+    }, 1000
     )
 
   }
 
-  // funkcja stop timer w metodzie unmounting 
-  //componentWillUnmount()
-  stopTimer() {
-    window.clearInterval(this.intervalId)
+
+  componentWillUnmount() {
+    this.stopTimer()
+  }
+
+  stopTimer = () => {
+    clearInterval(this.intervalId)
   }
 
 
@@ -200,28 +208,27 @@ class App extends React.Component {
             <button onClick={this.handlerAddTask}>Add task</button>
             <button onClick={this.handleDeleteAllTasks}>Clean tasks</button>
             <ol>
-              {
-                this.state.listTasks.map((element, index) => {
-                  return (
-                    <li>
-                      <CountDownTimer
-                        key={element.id}
-                        minutes={minutesLeft}
-                        seconds={secondsLeft}
-                        onTogglePause={this.handleTogglePause}
-                        onStartCountDwon={this.handleStartBtnCountDown}
-                        onStopCountDown={this.handleStopBtnCountDown}
-                        isRunning={isRunning}
-                        isPaused={isPaused}
-                        countPausa={pausesCount}
-                        deleteTask={this.handleDeleteTask}
-                        index={index} name={element.name}
-                        time={element.time}
-                        element={element}
-                      />
-                    </li>
-                  )
-                })
+              {this.state.listTasks.map((element, index) => {
+                return (
+                  <li>
+                    <CountDownTimer
+                      key={element.id}
+                      minutes={minutesLeft}
+                      seconds={secondsLeft}
+                      onTogglePause={this.handleTogglePause}
+                      onStartCountDwon={this.handleStartBtnCountDown}
+                      onStopCountDown={this.handleStopBtnCountDown}
+                      isRunning={isRunning}
+                      isPaused={isPaused}
+                      countPausa={pausesCount}
+                      deleteTask={this.handleDeleteTask}
+                      index={index} name={element.name}
+                      time={element.time}
+                      element={element}
+                    />
+                  </li>
+                )
+              })
               }
             </ol>
           </div>

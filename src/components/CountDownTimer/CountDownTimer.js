@@ -3,6 +3,9 @@ import NameTask from '../NameTask/NameTask'
 import './CountDown.css'
 
 class CountDownTimer extends React.Component {
+    constructor(props) {
+        super(props)
+    }
 
     // deleting task 
     handelDeleteTask = () => {

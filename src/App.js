@@ -2,11 +2,13 @@
 import './App.css';
 import React from 'react';
 import CountDownTimer from './components/CountDownTimer/CountDownTimer'
+import SearchBar from './components/SearchBar/SearchBar';
 
 class App extends React.Component {
   intervalId = null;
   constructor(props) {
     super(props)
+
     this.inputSearchValue = React.createRef();
 
     this.state = {
@@ -18,7 +20,8 @@ class App extends React.Component {
       elapsedTimeinSeconds: 0, // czas upłynięty w sekundach
       inputFieldText: 'Uczę sie Reacta',
       inputFieldTime: 0,
-      activeTask: [],
+
+
     }
   }
 
@@ -32,9 +35,10 @@ class App extends React.Component {
       const newListTasks = [...prevState.listTasks, {
         name: prevState.inputFieldText,
         time: prevState.inputFieldTime,
-        isRunning: false,
+        // zrobic tak aby kazde zadanie dostawło swoj licznik 
       }]
 
+      console.log(this.licznik)
       return {
         listTasks: newListTasks,
       };
@@ -104,7 +108,7 @@ class App extends React.Component {
 
 
   handleStopBtnCountDown = () => {
-    console.log('dziala stop')
+    console.log(this)
     this.setState({
       isRunning: false,
       isPaused: false,
@@ -114,11 +118,13 @@ class App extends React.Component {
     this.stopTimer()
   }
 
-  handleStartBtnCountDown = () => {
+
+  handleStartBtnCountDown = (index) => {
     console.log('działa start')
     this.setState({
       isRunning: true,
     })
+    console.log(index)
     this.startTimer()
   }
 
@@ -140,7 +146,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.startTimer()
+    if (this.state.isRunning === true) {
+      this.startTimer()
+    }
+
   }
 
   startTimer = () => {
@@ -150,9 +159,7 @@ class App extends React.Component {
           elapsedTimeinSeconds: prevState.elapsedTimeinSeconds + 1
         })
       )
-    }, 1000
-    )
-
+    }, 1000)
   }
 
 
@@ -216,7 +223,7 @@ class App extends React.Component {
                       minutes={minutesLeft}
                       seconds={secondsLeft}
                       onTogglePause={this.handleTogglePause}
-                      onStartCountDwon={this.handleStartBtnCountDown}
+                      onStartCountDown={this.handleStartBtnCountDown}
                       onStopCountDown={this.handleStopBtnCountDown}
                       isRunning={isRunning}
                       isPaused={isPaused}
@@ -233,9 +240,7 @@ class App extends React.Component {
             </ol>
           </div>
           <div className="flex-righ">
-            <input ref={this.inputSearchValue} onChange={this.handleSearchValue} type="text" placeholder="Search.."></input>
-            <button onClick={this.handleDeleteSearchTask}>Delete Tasks</button>
-            <ol>{filterResults}</ol>
+            <SearchBar filterResults={filterResults} />
           </div>
         </div>
       </div>

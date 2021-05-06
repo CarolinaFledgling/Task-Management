@@ -18,7 +18,8 @@ class CountDownTimer extends React.Component {
     }
 
     handleStartButton = () => {
-        this.props.onStartCountDown()
+        this.props.onStartCountDown(this.props.index)
+        // console.log(this.props.onStartCountDown)
     }
     handleTogglePause = () => {
         this.props.onTogglePause()

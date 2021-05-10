@@ -22,7 +22,7 @@ class App extends React.Component {
         //     id: 0,
         //     text: 'Nauka Reacta',
         //     time: 60,
-        // },
+        //    },
       ],
       searchList: [],
       searchText: "",
@@ -69,17 +69,20 @@ class App extends React.Component {
     return true
   }
 
-  //  Wyszukanie zadania 
-
+  //  Wyszukanie zadania
+  //searchtext - wpisany tekst w input
   handlerSearchTask = (text) => {
     console.log('szukaj', text);
 
     this.setState((prevState) => {
       const tasks = [...prevState.tasks]
-      const filteredTask = tasks.filter((task) => {
-        return task.text.toLowerCase().includes(this.state.searchText.toLowerCase())
-      })
+      console.log(tasks)
 
+      const filteredTask = tasks.filter((task) => {
+        console.log('task.text:', task.text)
+        console.log('text:', text)
+        return task.text.toLowerCase().includes(text.toLowerCase())
+      })
 
       return {
         searchText: text,

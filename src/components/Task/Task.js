@@ -32,11 +32,11 @@ class Task extends React.Component {
         const { text, time } = this.props.task
         return (
 
-            <div>
-                <h4>{text}</h4>
+            <li>
+                <h3> {text}</h3>
                 <p>Your set time: {time} min</p>
                 <button onClick={this.handleDeleteTask}>Delete</button>
-            </div>
+            </li>
         );
     }
 }

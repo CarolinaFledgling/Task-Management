@@ -9,7 +9,8 @@ const TaskList = (props) => {
         <div>
             <h3>Lista zadań do zrobienia</h3>
             {/* wyświetlenie pojedynczego Taska na podstawie tablicy z obiektami przekazanej z App  */}
-            {tasks}
+            <ol>{tasks}</ol>
+
         </div>
     );
 }

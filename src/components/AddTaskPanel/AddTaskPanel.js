@@ -25,10 +25,23 @@ class AddTaskPanel extends Component {
     }
 
     // Dodawanie Tasku
-
     handleClickTask = () => {
+        const { text, number } = this.state
 
+        if (text.length > 2) {
+            const add = this.props.addTask(text, number);
+            if (add) {
+                this.setState({
+                    text: '',
+                    number: '',
+                })
+            }
+        } else {
+            alert(' too short task !')
+        }
     }
+
+
     render() {
         return (
             <div>

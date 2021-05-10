@@ -3,7 +3,7 @@ import Task from '../Task/Task';
 
 
 const TaskList = (props) => {
-    const tasks = props.tasks.map(task => <Task key={task.id} task={task} />)
+    const tasks = props.tasks.map((task, index) => <Task key={task.id} task={task} deleteTask={props.deleteTask} index={index} />)
     // task={task} przepuszczamy dalej jeden pojedynczy obiekt - nasz 1 task 
     return (
         <div>

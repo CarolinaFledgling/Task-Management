@@ -38,11 +38,31 @@ class App extends React.Component {
     }
   }
   // kazde nasze zadanie jest odzielnym obiektem posiadajacy różne właściwosci
+
+
+  // usunięcie pojedynczego zadania 
+
+  deleteTask = (element, index) => {
+    const indexTask = this.state.tasks.indexOf(element)
+    console.log(`kliknięto task na pozycji: ${indexTask} o index-ie ${index}`)
+
+    if (indexTask > -1) {
+      this.setState((prevState) => {
+        const newListTasks = [...prevState.tasks]
+        newListTasks.splice(indexTask, 1)
+
+        return {
+          tasks: newListTasks
+        }
+
+      })
+    }
+  }
   render() {
     return (
       <div className='app'>
         <AddTaskPanel />
-        <TaskList tasks={this.state.tasks} />
+        <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} />
       </div>
     );
   }

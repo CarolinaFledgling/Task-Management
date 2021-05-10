@@ -1,4 +1,5 @@
 import React from 'react';
+import './Task.css'
 
 // const Task = (props) => {
 //     const { text, time } = props.task
@@ -32,7 +33,7 @@ class Task extends React.Component {
         const { text, time } = this.props.task
         return (
 
-            <li>
+            <li className='item'>
                 <h3> {text}</h3>
                 <p>Your set time: {time} min</p>
                 <button onClick={this.handleDeleteTask}>Delete</button>

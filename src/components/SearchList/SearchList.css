@@ -1,7 +1,11 @@
-.taskLists{
+.searchedList{
     color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.taskList{
+    color: crimson;
 }

@@ -3,6 +3,8 @@ import React from 'react'
 import AddTaskPanel from '../AddTaskPanel/AddTaskPanel';
 import TaskList from '../TaskList/TaskList';
 import SearchBar from '../SearchBar/SearchBar';
+import SearchList from '../SearchList/SearchList'
+
 
 
 
@@ -72,8 +74,17 @@ class App extends React.Component {
   handlerSearchTask = (text) => {
     console.log('szukaj', text);
 
-    this.setState({
-      searchText: text
+    this.setState((prevState) => {
+      const tasks = [...prevState.tasks]
+      const filteredTask = tasks.filter((task) => {
+        return task.text.toLowerCase().includes(this.state.searchText.toLowerCase())
+      })
+
+
+      return {
+        searchText: text,
+        searchList: filteredTask,
+      }
     });
   }
 
@@ -85,7 +96,8 @@ class App extends React.Component {
           <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} />
         </div>
         <div className='right-side'>
-          <SearchBar text={this.state.searchText} tasksSearched={this.state.searchList} handlerSearchTask={this.handlerSearchTask} />
+          <SearchBar text={this.state.searchText} handlerSearchTask={this.handlerSearchTask} />
+          <SearchList tasksSearched={this.state.searchList} />
         </div>
       </div>
     );

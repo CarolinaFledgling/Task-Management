@@ -4,21 +4,10 @@ import React, { Component } from 'react';
 class SearchBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            text: '',
-        }
     }
 
     handleText = (e) => {
-        this.setState({
-            text: e.target.value
-        })
-    }
-
-
-    handlerSearchTask = () => {
-        this.props.handlerSearchTask(this.state.text)
-        console.log('szukaj')
+        this.props.handlerSearchTask(e.target.value);
     }
 
     render() {
@@ -26,7 +15,13 @@ class SearchBar extends Component {
             <div>
                 <form>
                     <h4>Find your task 🔍</h4>
-                    <input input type='text' onChange={this.handlerSearchTask} placeholder='find your task' value={this.state.text} onChange={this.handleText}></input>
+                    <input
+                        type='text'
+                        placeholder='find your task'
+                        value={this.props.text}
+                        onChange={this.handleText}
+                    >
+                    </input>
                 </form>
             </div>
         );

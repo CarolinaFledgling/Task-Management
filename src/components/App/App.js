@@ -23,6 +23,7 @@ class App extends React.Component {
         // },
       ],
       searchList: [],
+      searchText: "",
     }
   }
 
@@ -69,8 +70,13 @@ class App extends React.Component {
   //  Wyszukanie zadania 
 
   handlerSearchTask = (text) => {
-    console.log('szukaj', text)
+    console.log('szukaj', text);
+
+    this.setState({
+      searchText: text
+    });
   }
+
   render() {
     return (
       <div className='app'>
@@ -79,7 +85,7 @@ class App extends React.Component {
           <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} />
         </div>
         <div className='right-side'>
-          <SearchBar tasksSearched={this.state.searchList} handlerSearchTask={this.handlerSearchTask} />
+          <SearchBar text={this.state.searchText} tasksSearched={this.state.searchList} handlerSearchTask={this.handlerSearchTask} />
         </div>
       </div>
     );

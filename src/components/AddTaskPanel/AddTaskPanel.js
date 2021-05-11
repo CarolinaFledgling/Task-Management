@@ -45,8 +45,8 @@ class AddTaskPanel extends Component {
     render() {
         return (
             <div>
-                <h1>-Task-Management- 🔥</h1>
-                <h2>What are your top tasks today?</h2>
+                <h1>- Task - Management - 🔥</h1>
+                <p>What are your top tasks today?</p>
                 <form className=''>
                     <input type='text' placeholder='Add your task' value={this.state.text} onChange={this.handleText}></input>
                     <input type='number' placeholder='For how long ?' value={this.state.number} onChange={this.handleTime}></input>

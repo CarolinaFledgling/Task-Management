@@ -14,7 +14,7 @@ const SearchList = (props) => {
     // task={task} przepuszczamy dalej jeden pojedynczy obiekt - nasz 1 task 
     return (
         <div className='searchedList'>
-            <h3>Your found tasks</h3>
+            <h2>Your found tasks</h2>
             <ol className='taskList'>{tasksSearched}</ol>
         </div>
     );

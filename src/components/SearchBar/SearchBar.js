@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SearchBar.css'
 
 
 class SearchBar extends Component {
@@ -12,9 +13,9 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div>
+            <div className='searchBar'>
                 <form>
-                    <h4>Find your task 🔍</h4>
+                    <h3> Find your task 🔍</h3>
                     <input
                         type='text'
                         placeholder='find your task'
@@ -22,6 +23,7 @@ class SearchBar extends Component {
                         onChange={this.handleText}
                     >
                     </input>
+                    <button>Delete tasks</button>
                 </form>
             </div>
         );

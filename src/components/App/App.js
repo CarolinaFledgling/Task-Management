@@ -13,7 +13,7 @@ class App extends React.Component {
   // counter dla ID pojedynczego taska 
   counter = 0;
   // ID setintervala 
-  intervalId = null;
+
 
 
   constructor(props) {
@@ -28,6 +28,7 @@ class App extends React.Component {
       ],
       searchList: [],
       searchText: "",
+      isRunning: false,
     }
   }
 
@@ -66,7 +67,7 @@ class App extends React.Component {
     console.log(task, this.counter)
 
     this.setState(prevState => ({
-      tasks: [...prevState.tasks, task]
+      tasks: [...prevState.tasks, task] // isRunings dodac to do kazdego zadania a pozniej naciskajac guzik start w countdwon zamienic isRuning na start i czy wtedy to odpali funkcje startTimer ?
     }))
     return true
   }
@@ -101,8 +102,18 @@ class App extends React.Component {
 
   }
 
+  // Countdwon 
+
+  // potrzebuje zastapic inputfieltime , moim czasem wpisanym w input text przy dodawaniu zadania ?
+  // przekazac do komponentu countdown minutesleft i secondleft aby wyswietlic 
+  // przekazac do komponentu countdown zawartosc text z inoputa 
+
   startTimer = () => {
     this.intervalId = setInterval(() => {
+      // const totalTimeinSeconds = inputFieldTime * 60; // całkowity czas w sekundach
+      // const timeLeftinSeconds = totalTimeinSeconds - elapsedTimeinSeconds // ile czasu zostalo nam w sekundach
+      // const minutesLeft = Math.floor(timeLeftinSeconds / 60)
+      // const secondsLeft = Math.floor(timeLeftinSeconds % 60)
       this.setState(
         (prevState) => ({
           elapsedTimeinSeconds: prevState.elapsedTimeinSeconds + 1
@@ -121,18 +132,6 @@ class App extends React.Component {
   }
 
   render() {
-
-    // Countdwon 
-    // potrzebuje zastapic inputfieltime , moim czasem wpisanym w input 
-    // przekazac do komponentu countdown minutesleft i secondleft aby wyswietlic 
-    // przekazac do komponentu countdown zawartosc text z inoputa 
-
-    const totalTimeinSeconds = inputFieldTime * 60; // całkowity czas w sekundach
-    const timeLeftinSeconds = totalTimeinSeconds - elapsedTimeinSeconds // ile czasu zostalo nam w sekundach
-    const minutesLeft = Math.floor(timeLeftinSeconds / 60)
-    const secondsLeft = Math.floor(timeLeftinSeconds % 60) // reszta z dzielenia 
-
-
     return (
       <div className='app'>
         <div className='left-side'>

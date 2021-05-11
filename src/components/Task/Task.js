@@ -20,9 +20,11 @@ import './Task.css'
 
 
 class Task extends React.Component {
+
+    static defaultProps = { isDeleteBtnVisible: true }
     constructor(props) {
         super(props);
-        this.state = {}
+
     }
 
     handleDeleteTask = () => {
@@ -36,7 +38,7 @@ class Task extends React.Component {
             <li className='item'>
                 <h3> {text}</h3>
                 <p>Your set time: {time} min</p>
-                <button onClick={this.handleDeleteTask}>Delete</button>
+                <button style={{ display: this.props.isDeleteBtnVisible ? "block" : "none" }} onClick={this.handleDeleteTask}>Delete</button>
             </li>
         );
     }

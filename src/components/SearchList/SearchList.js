@@ -4,7 +4,13 @@ import Task from '../Task/Task';
 
 
 const SearchList = (props) => {
-    const tasksSearched = props.tasksSearched.map((task, index) => <Task key={task.id} task={task} deleteTask={props.deleteTask} index={index} />)
+    const tasksSearched = props.tasksSearched.map((task, index) => <Task
+        key={task.id}
+        task={task}
+        deleteTask={props.deleteTask}
+        index={index}
+        isDeleteBtnVisible={false} />)
+
     // task={task} przepuszczamy dalej jeden pojedynczy obiekt - nasz 1 task 
     return (
         <div className='searchedList'>

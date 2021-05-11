@@ -1,4 +1,5 @@
 import React from 'react';
+import CountdownTimer from '../../components/CountdownTimer/CountdownTimer';
 import './Task.css'
 
 // const Task = (props) => {
@@ -38,6 +39,7 @@ class Task extends React.Component {
             <li className='item'>
                 <h3> {text}</h3>
                 <p>Your set time: {time} min</p>
+                <CountdownTimer />
                 <button style={{ display: this.props.isDeleteBtnVisible ? "block" : "none" }} onClick={this.handleDeleteTask}>Delete</button>
             </li>
         );

@@ -12,6 +12,8 @@ class App extends React.Component {
 
   // counter dla ID pojedynczego taska 
   counter = 0;
+  // ID setintervala 
+  intervalId = null;
 
 
   constructor(props) {
@@ -91,7 +93,46 @@ class App extends React.Component {
     });
   }
 
+  // Funkcjonalnosc dla licznika 
+  componentDidMount() {
+    if (this.state.isRunning === true) {
+      this.startTimer()
+    }
+
+  }
+
+  startTimer = () => {
+    this.intervalId = setInterval(() => {
+      this.setState(
+        (prevState) => ({
+          elapsedTimeinSeconds: prevState.elapsedTimeinSeconds + 1
+        })
+      )
+    }, 1000)
+  }
+
+
+  componentWillUnmount() {
+    this.stopTimer()
+  }
+
+  stopTimer = () => {
+    clearInterval(this.intervalId)
+  }
+
   render() {
+
+    // Countdwon 
+    // potrzebuje zastapic inputfieltime , moim czasem wpisanym w input 
+    // przekazac do komponentu countdown minutesleft i secondleft aby wyswietlic 
+    // przekazac do komponentu countdown zawartosc text z inoputa 
+
+    const totalTimeinSeconds = inputFieldTime * 60; // całkowity czas w sekundach
+    const timeLeftinSeconds = totalTimeinSeconds - elapsedTimeinSeconds // ile czasu zostalo nam w sekundach
+    const minutesLeft = Math.floor(timeLeftinSeconds / 60)
+    const secondsLeft = Math.floor(timeLeftinSeconds % 60) // reszta z dzielenia 
+
+
     return (
       <div className='app'>
         <div className='left-side'>

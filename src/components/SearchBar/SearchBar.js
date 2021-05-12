@@ -14,7 +14,7 @@ class SearchBar extends Component {
     render() {
         return (
             <div className='searchBar'>
-                <form>
+                <div>
                     <h3> Find your task 🔍</h3>
                     <input
                         type='text'
@@ -24,7 +24,7 @@ class SearchBar extends Component {
                     >
                     </input>
                     <button>Delete tasks</button>
-                </form>
+                </div>
             </div>
         );
     }

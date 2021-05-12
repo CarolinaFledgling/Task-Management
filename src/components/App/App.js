@@ -29,6 +29,7 @@ class App extends React.Component {
       searchList: [],
       searchText: "",
       isRunning: false,
+      elapsedTimeinSeconds: 15 * 60, //15min
     }
   }
 
@@ -56,12 +57,12 @@ class App extends React.Component {
   // Co muszę zrobić : muszę stworzyć nowy obiekt na podstawie danych z inputów i dodany do listy Tasks
   // funkcja addTask musi otrzymać: text-tekst z inputa, time -czas z inputa , musimy przekazac w AddTaskPanel do fn która tam wywołujemy 
   addTask = (text, time) => {
-    // utworzyć obiekt pojedynczego nowego taska
     const task =
     {
       id: this.counter,
       text,
       time,
+      isRunning: false,
     }
     this.counter++
     console.log(task, this.counter)
@@ -96,30 +97,31 @@ class App extends React.Component {
 
   // Funkcjonalnosc dla licznika 
   componentDidMount() {
-    if (this.state.isRunning === true) {
-      this.startTimer()
-    }
-
+    this.startTimer()
   }
 
   // Countdwon 
 
-  // potrzebuje zastapic inputfieltime , moim czasem wpisanym w input text przy dodawaniu zadania ?
+  // potrzebuje zastapic elapsedTimeinSeconds , moim czasem wpisanym w input text przy dodawaniu zadania ?
   // przekazac do komponentu countdown minutesleft i secondleft aby wyswietlic 
-  // przekazac do komponentu countdown zawartosc text z inoputa 
+  // przekazac do komponentu countdown zawartosc text z inputa
+
+  // jak uruchamiamy timer, nasza wartosc z inputa to elapsedTimeinSeconds
+  // setinterval przyjmuje dwa parametry , pierwszy funkcja która bedzie wywołyana co jakis czas i co ile sekund ma sie ona wywoływac
 
   startTimer = () => {
     this.intervalId = setInterval(() => {
-      // const totalTimeinSeconds = inputFieldTime * 60; // całkowity czas w sekundach
-      // const timeLeftinSeconds = totalTimeinSeconds - elapsedTimeinSeconds // ile czasu zostalo nam w sekundach
-      // const minutesLeft = Math.floor(timeLeftinSeconds / 60)
-      // const secondsLeft = Math.floor(timeLeftinSeconds % 60)
-      this.setState(
-        (prevState) => ({
-          elapsedTimeinSeconds: prevState.elapsedTimeinSeconds + 1
-        })
-      )
+      const totalTimeinSeconds = 30 * 60; // wartosc domyslna 30min// całkowity czas w sekundach bedzie 30 min (początkowa wartosc)
+      const timeLeftinSeconds = totalTimeinSeconds - this.state.elapsedTimeinSeconds // ile czasu zostalo nam w sekundach
+      const minutesLeft = Math.floor(timeLeftinSeconds / 60) //ile pełnych minut nam zostało 
+      const secondsLeft = Math.floor(timeLeftinSeconds % 60)
+      console.log(minutesLeft, ':', secondsLeft)
+
+      this.setState((prevState) => ({
+        elapsedTimeinSeconds: prevState.elapsedTimeinSeconds + 1
+      }))
     }, 1000)
+    console.log(this.state.elapsedTimeinSeconds)
   }
 
 

@@ -15,7 +15,7 @@ class AddTaskPanel extends Component {
       text: event.target.value,
     });
   };
-
+// generyczne nazwy to nie najlepszy pomysł przy komponencie który robi konkretne zadania - "duration/time" moze?
   handleTime = (event) => {
     this.setState({
       number: event.target.value,
@@ -25,7 +25,7 @@ class AddTaskPanel extends Component {
   // Add task
   handleClickTask = () => {
     const { text, number } = this.state;
-
+    // taka dwójka do consta na góre pliku bo to jest magic number w tej chwili  ??
     if (text.length > 2) {
       const add = this.props.addTask(text, number);
       if (add) {

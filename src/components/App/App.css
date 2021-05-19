@@ -1,17 +1,15 @@
-.app{
-    padding: 20px;
-    display: flex;
-
+.app {
+  padding: 20px;
+  display: flex;
 }
 
-.left-side{
-    width: 50%;
-    text-align: center;
-
+.left-side {
+  width: 50%;
+  text-align: center;
 }
 
-.right-side{
-    width: 50%;
-    text-align: center;
-    text-transform: uppercase;
+.right-side {
+  width: 50%;
+  text-align: center;
+  text-transform: uppercase;
 }

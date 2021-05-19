@@ -1,50 +1,34 @@
-import React from 'react'
-import NameTask from '../NameTask/NameTask'
-import './CountDown.css'
+import React, { Component } from "react";
+import "./Countdown.css";
 
-class CountDownTimer extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-    // deleting task 
-    handelDeleteTask = () => {
-        this.props.deleteTask(this.props.name, this.props.element)
-    }
-    // Handle STOP PAUSA START 
-
-    handleStopButton = () => {
-        this.props.onStopCountDown()
-    }
-
-    handleStartButton = () => {
-        this.props.onStartCountDown(this.props.index)
-        // console.log(this.props.onStartCountDown)
-    }
-    handleTogglePause = () => {
-        this.props.onTogglePause()
-    }
-
-    render() {
-        const { isPaused, minutes, seconds, isRunning, countPausa } = this.props
-        return (
-            <div>
-                <div className={isPaused ? 'inactive' : ''}>
-                    <NameTask name={this.props.name} />
-                    <p>Time Remaining: {minutes} : {seconds < 10 ? '00' : seconds}</p>
-                </div>
-
-                <button type="button" onClick={this.handleStartButton} disabled={isRunning}>Start</button>
-                <button type="button" onClick={this.handleStopButton} disabled={!isRunning} >Stop</button>
-                <button type="button" onClick={this.handleTogglePause} disabled={!isRunning}>{isPaused ? 'Continue' : 'Pause'} </button>
-                <p>Number of breaks : {countPausa}</p>
-
-                <button type="button" onClick={this.handelDeleteTask} >Delete Task</button>
-
-            </div>
-        )
-    }
-
+class CountdownTimer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return (
+      <div>
+        <div>
+          <p>
+            <strong>Name of you task:</strong>{" "}
+          </p>
+          <p>Time: {this.props.task.time}</p>
+          <p>Elapsed time: {this.props.task.elapsedTime}</p>
+          <button
+            className="startBtn"
+            type="button"
+            onClick={this.props.onStart}
+          >
+            Start
+          </button>
+          <button className="stopBtn" type="button" onClick={this.props.onStop}>
+            Stop
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default CountDownTimer
+export default CountdownTimer;

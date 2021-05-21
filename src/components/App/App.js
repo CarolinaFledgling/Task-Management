@@ -5,12 +5,7 @@ import TaskList from "../TaskList/TaskList";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchList from "../SearchList/SearchList";
 
-const EMPTY_LIST = [];
-
 class App extends React.Component {
-  counter = 0;
-  // ID setintervala
-
   constructor(props) {
     super(props);
     this.state = {
@@ -19,18 +14,20 @@ class App extends React.Component {
         //     id: 0,
         //     text: 'Nauka Reacta',
         //     time: 60,
+        //     elapsedTime:0
         //    },
       ],
       searchList: [],
       searchText: "",
-      isRunning: false,
-      elapsedTimeinSeconds: 15 * 60, //15min
+      counter: 0,
     };
   }
 
-  // usunięcie pojedynczego zadania
-  deleteTask = (element, index) => {
-    const indexTask = this.state.tasks.indexOf(element);
+  // Usunięcie pojedynczego zadania
+  handleDeleteTask = (taskToRemove, index) => {
+    clearInterval(taskToRemove.intervalId);
+
+    const indexTask = this.state.tasks.indexOf(taskToRemove);
     console.log(`kliknięto task na pozycji: ${indexTask} o index-ie ${index}`);
 
     if (indexTask > -1) {
@@ -46,26 +43,23 @@ class App extends React.Component {
   };
 
   // Dodanie pojedynczego Taska
-  // Co muszę zrobić : muszę stworzyć nowy obiekt na podstawie danych z inputów i dodany do listy Tasks
-  // funkcja addTask musi otrzymać: text-tekst z inputa, time -czas z inputa , musimy przekazac w AddTaskPanel do fn która tam wywołujemy
   addTask = (text, time) => {
     const task = {
-      id: this.counter,
+      id: this.state.counter,
       text,
       time,
       elapsedTime: 0,
-      isRunning: false,
     };
-    this.counter++;
-    console.log(task, this.counter);
+    this.state.counter++;
+    console.log(task, this.state.counter);
 
     this.setState((prevState) => ({
-      tasks: [...prevState.tasks, task], // isRunings dodac to do kazdego zadania a pozniej naciskajac guzik start w countdwon zamienic isRuning na start i czy wtedy to odpali funkcje startTimer ?
+      tasks: [...prevState.tasks, task],
     }));
-    return true;
+    return;
   };
 
-  //  Wyszukanie zadania
+  // Wyszukanie zadania
   //searchtext - wpisany tekst w input
   handlerSearchTask = (text) => {
     console.log("szukaj", text);
@@ -74,13 +68,9 @@ class App extends React.Component {
     });
   };
 
- 
   componentDidMount() {}
 
-
-  componentWillUnmount() {
-    // TODO: Wyczysic wszystkie timery w task.
-  }
+  componentWillUnmount() {}
 
   handleTaskStart = (task) => {
     console.log("Start task", { task });
@@ -89,14 +79,12 @@ class App extends React.Component {
       this.setState((prevState) => {
         const foundTask = prevState.tasks.find((value) => value.id === task.id);
 
-        const nextTask = {
-          ...foundTask,
-          elapsedTime: foundTask.elapsedTime + 1,
-        };
-
         const nextTasks = prevState.tasks.map((value) => {
           if (value.id === task.id) {
-            return nextTask;
+            return {
+              ...foundTask,
+              elapsedTime: foundTask.elapsedTime + 1,
+            };
           }
           return value;
         });
@@ -131,8 +119,24 @@ class App extends React.Component {
     clearInterval(task.intervalId);
   };
 
+  handleClearTimer = () => {
+    const tasks = this.state.tasks;
+    const clearedTasks = tasks.map((task) => {
+      clearInterval(task.intervalId);
+      return {
+        ...task,
+        elapsedTime: 0,
+      };
+    });
+
+    this.setState({
+      tasks: clearedTasks,
+      searchText: "",
+    });
+  };
+
   render() {
-    let filteredTask = EMPTY_LIST;
+    let filteredTask = null;
 
     if (this.state.searchText) {
       filteredTask = this.state.tasks.filter((task) => {
@@ -145,10 +149,14 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="left-side">
-          <AddTaskPanel addTask={this.addTask} tasks={this.state.tasks}/>
+          <AddTaskPanel
+            addTask={this.addTask}
+            tasks={this.state.tasks}
+            onClearTimer={this.handleClearTimer}
+          />
           <TaskList
             tasks={this.state.tasks}
-            deleteTask={this.deleteTask}
+            deleteTask={this.handleDeleteTask}
             onStart={this.handleTaskStart}
             onStop={this.handleTaskStop}
           />
@@ -158,7 +166,10 @@ class App extends React.Component {
             text={this.state.searchText}
             handlerSearchTask={this.handlerSearchTask}
           />
-          <SearchList tasksSearched={filteredTask} />
+          <SearchList
+            tasksSearched={filteredTask}
+            onDeleteTask={this.handleDeleteTask}
+          />
         </div>
       </div>
     );

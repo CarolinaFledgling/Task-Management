@@ -6,7 +6,7 @@ class AddTaskPanel extends Component {
     super(props);
     this.state = {
       text: "",
-      number: "",
+      time: "",
     };
   }
 
@@ -15,23 +15,23 @@ class AddTaskPanel extends Component {
       text: event.target.value,
     });
   };
-// generyczne nazwy to nie najlepszy pomysł przy komponencie który robi konkretne zadania - "duration/time" moze?
+
   handleTime = (event) => {
     this.setState({
-      number: event.target.value,
+      time: event.target.value,
     });
   };
 
   // Add task
   handleClickTask = () => {
-    const { text, number } = this.state;
+    const { text, time } = this.state;
     // taka dwójka do consta na góre pliku bo to jest magic number w tej chwili  ??
     if (text.length > 2) {
-      const add = this.props.addTask(text, number);
+      const add = this.props.addTask(text, time);
       if (add) {
         this.setState({
           text: "",
-          number: "",
+          time: "",
         });
       }
     } else {
@@ -39,17 +39,14 @@ class AddTaskPanel extends Component {
     }
   };
 
-  // Clear all timers
-
+  // Usuniecie i reset wszystkich timerów
   handlerClearTimers = () => {
-    let tasks = this.props.tasks;
-    console.log(tasks);
-    tasks = tasks.map((task) => {
-      clearInterval(task.intervalId);
-      task.elapsedTime = 0;
-    });
+    this.props.onClearTimer();
 
-    console.log(tasks);
+    this.setState({
+      time: "",
+      text: "",
+    });
   };
 
   render() {
@@ -69,8 +66,8 @@ class AddTaskPanel extends Component {
           <input
             className="input-field"
             type="number"
-            placeholder="For how long ?"
-            value={this.state.number}
+            placeholder="For how long?"
+            value={this.state.time}
             onChange={this.handleTime}
           ></input>
         </form>

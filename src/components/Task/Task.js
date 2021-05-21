@@ -2,7 +2,7 @@ import React from "react";
 import CountdownTimer from "../../components/CountdownTimer/CountdownTimer";
 import "./Task.css";
 
-class Task extends React.Component {
+class Task extends React.PureComponent {
   static defaultProps = { isDeleteBtnVisible: true };
   constructor(props) {
     super(props);

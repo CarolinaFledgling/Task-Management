@@ -22,10 +22,20 @@ class CountdownTimer extends Component {
             className="startBtn"
             type="button"
             onClick={this.props.onStart}
+            style={{
+              display: this.props.isDeleteBtnVisible ? "block" : "none",
+            }}
           >
             Start
           </button>
-          <button className="stopBtn" type="button" onClick={this.props.onStop}>
+          <button
+            className="stopBtn"
+            type="button"
+            onClick={this.props.onStop}
+            style={{
+              display: this.props.isDeleteBtnVisible ? "block" : "none",
+            }}
+          >
             Stop
           </button>
         </div>

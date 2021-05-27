@@ -39,7 +39,6 @@ class AddTaskPanel extends Component {
     }
   };
 
-  //  zapytać sie dlaczego nie działa czyszczenie inputów na btn clear all 
   handlerClearTimers = () => {
     this.props.onClearTimer();
     this.setState({
@@ -48,12 +47,16 @@ class AddTaskPanel extends Component {
     });
   };
 
+  handleDeleteTasks = () => {
+    this.props.onDeleteAllTasks();
+  };
+
   render() {
     return (
       <div>
         <h1>- Task - Management - 🔥</h1>
         <p>What are your top tasks today?</p>
-        <button onClick={this.handlerClearTimers}>Clear All </button>
+        <button onClick={this.handlerClearTimers}>Clear Timers Fields </button>
         <form className="">
           <input
             className="input-field"
@@ -71,6 +74,9 @@ class AddTaskPanel extends Component {
           ></input>
         </form>
         <button onClick={this.handleClickTask}>Add your Task</button>
+        <button className="btnCleanTasks" onClick={this.handleDeleteTasks}>
+          Clean Tasks
+        </button>
       </div>
     );
   }

@@ -3,7 +3,6 @@ import CountdownTimer from "../../components/CountdownTimer/CountdownTimer";
 import "./Task.css";
 
 class Task extends React.PureComponent {
-  static defaultProps = { isDeleteBtnVisible: true };
   constructor(props) {
     super(props);
   }
@@ -30,13 +29,9 @@ class Task extends React.PureComponent {
           onStart={this.handleStart}
           onStop={this.handleStop}
           task={this.props.task}
+          isDeleteBtnVisible={this.props.isDeleteBtnVisible}
         />
-        <button
-          style={{ display: this.props.isDeleteBtnVisible ? "block" : "none" }}
-          onClick={this.handleDeleteTask}
-        >
-          Delete
-        </button>
+        <button onClick={this.handleDeleteTask}>Delete</button>
       </li>
     );
   }

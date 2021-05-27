@@ -13,6 +13,7 @@ class SearchList extends PureComponent {
           task={task}
           deleteTask={onDeleteTask}
           index={index}
+          isDeleteBtnVisible={this.props.isDeleteBtnVisible}
         />
       ));
     }

@@ -6,6 +6,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import SearchList from "../SearchList/SearchList";
 
 class App extends React.Component {
+
+  static defaultProps = { isDeleteBtnVisible: true };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -40,6 +43,14 @@ class App extends React.Component {
         };
       });
     }
+  };
+
+  // Usunięcie wszystkich tasków
+  handleDeleteAllTasks = () => {
+    const tasks = this.state.tasks;
+    this.setState({
+      tasks: [],
+    });
   };
 
   // Dodanie pojedynczego Taska
@@ -77,7 +88,7 @@ class App extends React.Component {
 
     const taskIntervalId = setInterval(() => {
       this.setState((prevState) => {
-         //update every second
+        //update every second
         const foundTask = prevState.tasks.find((value) => value.id === task.id);
 
         const nextTasks = prevState.tasks.map((value) => {
@@ -154,12 +165,14 @@ class App extends React.Component {
             addTask={this.addTask}
             tasks={this.state.tasks}
             onClearTimer={this.handleClearTimer}
+            onDeleteAllTasks={this.handleDeleteAllTasks}
           />
           <TaskList
             tasks={this.state.tasks}
             deleteTask={this.handleDeleteTask}
             onStart={this.handleTaskStart}
             onStop={this.handleTaskStop}
+            
           />
         </div>
         <div className="right-side">
@@ -170,6 +183,7 @@ class App extends React.Component {
           <SearchList
             tasksSearched={filteredTask}
             onDeleteTask={this.handleDeleteTask}
+            isDeleteBtnVisible={false}
           />
         </div>
       </div>

@@ -13,8 +13,11 @@ class CountdownTimer extends Component {
           <p>
             <strong>Name of you task:</strong>{" "}
           </p>
-          <p>Time: {this.props.task.time}</p>
+          <p>Time: {this.props.task.time * 60} seconds</p>
           <p>Elapsed time: {this.props.task.elapsedTime}</p>
+          <p>
+            Time Remaining: {this.props.task.time - this.props.task.elapsedTime}
+          </p>
           <button
             className="startBtn"
             type="button"

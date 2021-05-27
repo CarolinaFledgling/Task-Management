@@ -77,6 +77,7 @@ class App extends React.Component {
 
     const taskIntervalId = setInterval(() => {
       this.setState((prevState) => {
+         //update every second
         const foundTask = prevState.tasks.find((value) => value.id === task.id);
 
         const nextTasks = prevState.tasks.map((value) => {

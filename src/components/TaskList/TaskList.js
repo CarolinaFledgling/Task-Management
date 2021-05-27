@@ -17,8 +17,6 @@ const TaskList = (props) => {
   return (
     <div className="taskLists">
       <h3>To do List</h3>
-
-      {/* wyświetlenie pojedynczego Taska na podstawie tablicy z obiektami przekazanej z App  */}
       <ol>{tasks}</ol>
     </div>
   );

@@ -13,11 +13,10 @@ class SearchList extends PureComponent {
           task={task}
           deleteTask={onDeleteTask}
           index={index}
+          isStartStopVisibleinLists={this.props.isStartStopVisibleinLists}
         />
       ));
     }
-
-    // task={task} przepuszczamy dalej jeden pojedynczy obiekt - nasz 1 task
     return (
       <div className="searchedList">
         {!tasksSearched ? <h2>No task found</h2> : <h2>Your found tasks</h2>}

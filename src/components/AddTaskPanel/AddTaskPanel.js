@@ -25,7 +25,6 @@ class AddTaskPanel extends Component {
   // Add task
   handleClickTask = () => {
     const { text, time } = this.state;
-    // taka dwójka do consta na góre pliku bo to jest magic number w tej chwili  ??
     if (text.length > 2) {
       const add = this.props.addTask(text, time);
       if (add) {
@@ -39,7 +38,6 @@ class AddTaskPanel extends Component {
     }
   };
 
-  //  zapytać sie dlaczego nie działa czyszczenie inputów na btn clear all 
   handlerClearTimers = () => {
     this.props.onClearTimer();
     this.setState({
@@ -48,13 +46,19 @@ class AddTaskPanel extends Component {
     });
   };
 
+  handleDeleteTasks = () => {
+    this.props.onDeleteAllTasks();
+  };
+
   render() {
     return (
       <div>
-        <h1>- Task - Management - 🔥</h1>
+        <h1>{this.props.title}</h1>
         <p>What are your top tasks today?</p>
-        <button onClick={this.handlerClearTimers}>Clear All </button>
-        <form className="">
+        <button onClick={this.handlerClearTimers}>
+          Clear Timers and Inputs{" "}
+        </button>
+        <form className="form">
           <input
             className="input-field"
             type="text"
@@ -71,6 +75,9 @@ class AddTaskPanel extends Component {
           ></input>
         </form>
         <button onClick={this.handleClickTask}>Add your Task</button>
+        <button className="btnCleanTasks" onClick={this.handleDeleteTasks}>
+          Clean Tasks
+        </button>
       </div>
     );
   }

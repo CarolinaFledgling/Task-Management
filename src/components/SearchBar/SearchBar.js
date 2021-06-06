@@ -21,7 +21,6 @@ class SearchBar extends PureComponent {
             value={this.props.text}
             onChange={this.handleText}
           ></input>
-          <button>Delete tasks</button>
         </div>
       </div>
     );

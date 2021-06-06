@@ -5,7 +5,7 @@
   transition: all 0.3s;
 }
 
-.startBtn:hover {
+.startBtn:hover:enabled {
   background-color: #f44336;
   color: white;
 }
@@ -18,7 +18,7 @@
   transition: all 0.3s;
 }
 
-.stopBtn:hover {
+.stopBtn:hover:enabled {
   background-color: #008cba;
   color: white;
 }

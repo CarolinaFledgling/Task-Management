@@ -4,6 +4,7 @@ import AddTaskPanel from "../AddTaskPanel/AddTaskPanel";
 import TaskList from "../TaskList/TaskList";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchList from "../SearchList/SearchList";
+import Heading from "../Heading/Heading";
 
 class App extends React.Component {
   static defaultProps = {

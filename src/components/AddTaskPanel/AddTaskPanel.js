@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Heading from "../Heading/Heading";
 import "./AddTaskPanel.css";
 
 class AddTaskPanel extends Component {
@@ -53,8 +54,8 @@ class AddTaskPanel extends Component {
   render() {
     return (
       <div>
-        <h1>{this.props.title}</h1>
-        <p>What are your top tasks today?</p>
+        <Heading />
+
         <button onClick={this.handlerClearTimers}>
           Clear Timers and Inputs{" "}
         </button>

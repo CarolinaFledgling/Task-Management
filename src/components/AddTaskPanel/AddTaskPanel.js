@@ -25,7 +25,6 @@ class AddTaskPanel extends Component {
   // Add task
   handleClickTask = () => {
     const { text, time } = this.state;
-    // taka dwójka do consta na góre pliku bo to jest magic number w tej chwili  ??
     if (text.length > 2) {
       const add = this.props.addTask(text, time);
       if (add) {
@@ -54,10 +53,12 @@ class AddTaskPanel extends Component {
   render() {
     return (
       <div>
-        <h1>- Task - Management - 🔥</h1>
+        <h1>{this.props.title}</h1>
         <p>What are your top tasks today?</p>
-        <button onClick={this.handlerClearTimers}>Clear Timers Fields </button>
-        <form className="">
+        <button onClick={this.handlerClearTimers}>
+          Clear Timers and Inputs{" "}
+        </button>
+        <form className="form">
           <input
             className="input-field"
             type="text"

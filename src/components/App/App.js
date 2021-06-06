@@ -6,27 +6,23 @@ import SearchBar from "../SearchBar/SearchBar";
 import SearchList from "../SearchList/SearchList";
 
 class App extends React.Component {
-
-  static defaultProps = { isDeleteBtnVisible: true };
+  static defaultProps = {
+    isStartStopVisibleinLists: false,
+    isStartStopVisibleinTaskList: true,
+  };
 
   constructor(props) {
     super(props);
+
     this.state = {
-      tasks: [
-        //   {
-        //     id: 0,
-        //     text: 'Nauka Reacta',
-        //     time: 60,
-        //     elapsedTime:0
-        //    },
-      ],
+      tasks: [],
       searchList: [],
       searchText: "",
       counter: 0,
+      isStartBtn: false,
     };
   }
 
-  // Usunięcie pojedynczego zadania
   handleDeleteTask = (taskToRemove, index) => {
     clearInterval(taskToRemove.intervalId);
 
@@ -45,7 +41,6 @@ class App extends React.Component {
     }
   };
 
-  // Usunięcie wszystkich tasków
   handleDeleteAllTasks = () => {
     const tasks = this.state.tasks;
     this.setState({
@@ -53,7 +48,6 @@ class App extends React.Component {
     });
   };
 
-  // Dodanie pojedynczego Taska
   addTask = (text, time) => {
     const task = {
       id: this.state.counter,
@@ -70,18 +64,12 @@ class App extends React.Component {
     return;
   };
 
-  // Wyszukanie zadania
-  //searchtext - wpisany tekst w input
   handlerSearchTask = (text) => {
     console.log("szukaj", text);
     this.setState({
       searchText: text,
     });
   };
-
-  componentDidMount() {}
-
-  componentWillUnmount() {}
 
   handleTaskStart = (task) => {
     console.log("Start task", { task });
@@ -110,6 +98,7 @@ class App extends React.Component {
     const nextTask = {
       ...task,
       intervalId: taskIntervalId,
+      isStartBtn: true,
     };
 
     this.setState((prevState) => {
@@ -158,10 +147,13 @@ class App extends React.Component {
       });
     }
 
+    console.log("Data:", this.props);
+
     return (
       <div className="app">
         <div className="left-side">
           <AddTaskPanel
+            title={this.props.title}
             addTask={this.addTask}
             tasks={this.state.tasks}
             onClearTimer={this.handleClearTimer}
@@ -172,7 +164,9 @@ class App extends React.Component {
             deleteTask={this.handleDeleteTask}
             onStart={this.handleTaskStart}
             onStop={this.handleTaskStop}
-            
+            isStartStopVisibleinTaskList={
+              this.props.isStartStopVisibleinTaskList
+            }
           />
         </div>
         <div className="right-side">
@@ -183,7 +177,7 @@ class App extends React.Component {
           <SearchList
             tasksSearched={filteredTask}
             onDeleteTask={this.handleDeleteTask}
-            isDeleteBtnVisible={false}
+            isStartStopVisibleinLists={this.props.isStartStopVisibleinLists}
           />
         </div>
       </div>

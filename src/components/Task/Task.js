@@ -29,7 +29,7 @@ class Task extends React.PureComponent {
           onStart={this.handleStart}
           onStop={this.handleStop}
           task={this.props.task}
-          isDeleteBtnVisible={this.props.isDeleteBtnVisible}
+          isStartStopVisibleinLists={this.props.isStartStopVisibleinLists}
         />
         <button onClick={this.handleDeleteTask}>Delete</button>
       </li>

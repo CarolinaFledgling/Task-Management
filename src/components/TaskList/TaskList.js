@@ -11,9 +11,10 @@ const TaskList = (props) => {
       index={index}
       onStart={props.onStart}
       onStop={props.onStop}
+      isStartStopVisibleinLists={props.isStartStopVisibleinTaskList}
     />
   ));
-  // task={task} przepuszczamy dalej jeden pojedynczy obiekt - nasz 1 task
+
   return (
     <div className="taskLists">
       <h3>To do List</h3>

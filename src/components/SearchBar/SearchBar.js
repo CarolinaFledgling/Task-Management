@@ -14,7 +14,7 @@ class SearchBar extends PureComponent {
     return (
       <div className="searchBar">
         <div>
-          <h3> Find your task 🔍</h3>
+          <h3 className='title-FindTask'> Find your task 🔍</h3>
           <input
             type="text"
             placeholder="find your task"

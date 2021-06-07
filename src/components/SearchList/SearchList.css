@@ -19,20 +19,4 @@ input {
   box-sizing: border-box;
 }
 
-button {
-  background-color: white;
-  color: black;
-  border: 2px solid #4caf50;
-  transition: all 0.3s;
-}
 
-button:disabled {
-  background-color: #e6e6e6;
-  color: #989898;
-  border-color: darkgrey;
-}
-
-button:hover:enabled {
-  background-color: #4caf50;
-  color: white;
-}

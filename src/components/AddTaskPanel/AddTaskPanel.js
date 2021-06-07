@@ -23,7 +23,6 @@ class AddTaskPanel extends Component {
     });
   };
 
-
   handleClickTask = () => {
     const { text, time } = this.state;
     if (text.length > 3 && time !== "") {
@@ -62,14 +61,14 @@ class AddTaskPanel extends Component {
           <input
             className="input-field"
             type="text"
-            placeholder="Add your task"
+            placeholder="Add your task eg. Study React"
             value={this.state.text}
             onChange={this.handleText}
           ></input>
           <input
             className="input-field"
             type="number"
-            placeholder="For how long?"
+            placeholder="For how long? eg. 60 min"
             value={this.state.time}
             onChange={this.handleTime}
           ></input>

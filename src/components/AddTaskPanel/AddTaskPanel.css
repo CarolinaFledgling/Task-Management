@@ -1,20 +1,9 @@
 .input-field {
   padding: 10px;
   margin-left: 1rem;
-}
-
-button {
-  margin: 1rem 0;
-  padding: 10px 20px;
+  font-weight: 500;
 }
 
 .btnCleanTasks {
-  border: 2px solid #ac453e;
-  margin-left: 10px;
-  transition: all 0.3s;
-}
-
-.btnCleanTasks:hover {
-  background-color: #ac453e;
-  color: white;
+  margin-left: 1rem;
 }

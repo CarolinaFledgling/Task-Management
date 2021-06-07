@@ -1,6 +1,6 @@
-h3 {
+.title-FindTask {
   background-color: rgb(250, 242, 228);
   display: inline;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 5px;
 }

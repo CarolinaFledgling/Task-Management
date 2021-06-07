@@ -17,7 +17,7 @@ const TaskList = (props) => {
 
   return (
     <div className="taskLists">
-      <h3>To do List</h3>
+      <h3 className="title-toDoList">To do List</h3>
       <ol>{tasks}</ol>
     </div>
   );

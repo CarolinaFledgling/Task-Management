@@ -4,7 +4,6 @@ import AddTaskPanel from "../AddTaskPanel/AddTaskPanel";
 import TaskList from "../TaskList/TaskList";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchList from "../SearchList/SearchList";
-import Heading from "../Heading/Heading";
 
 class App extends React.Component {
   static defaultProps = {
@@ -57,7 +56,6 @@ class App extends React.Component {
       elapsedTime: 0,
     };
     this.state.counter++;
-    console.log(task, this.state.counter);
 
     this.setState((prevState) => ({
       tasks: [...prevState.tasks, task],
@@ -66,15 +64,12 @@ class App extends React.Component {
   };
 
   handlerSearchTask = (text) => {
-    console.log("szukaj", text);
     this.setState({
       searchText: text,
     });
   };
 
   handleTaskStart = (task) => {
-    console.log("Start task", { task });
-
     const taskIntervalId = setInterval(() => {
       this.setState((prevState) => {
         //update every second
@@ -165,6 +160,8 @@ class App extends React.Component {
 
     console.log("Data:", this.props);
 
+
+
     return (
       <div className="app">
         <div className="left-side">
@@ -178,6 +175,7 @@ class App extends React.Component {
           <TaskList
             tasks={this.state.tasks}
             deleteTask={this.handleDeleteTask}
+            // zapytac się czy tu powinno być OnDeleteTask ??
             onStart={this.handleTaskStart}
             onStop={this.handleTaskStop}
             isStartStopVisibleinTaskList={

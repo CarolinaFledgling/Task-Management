@@ -55,9 +55,8 @@ class AddTaskPanel extends Component {
     return (
       <div>
         <Heading />
-
         <button onClick={this.handlerClearTimers}>
-          Clear Timers and Inputs{" "}
+          Clear Time and Text
         </button>
         <form className="form">
           <input
@@ -77,7 +76,7 @@ class AddTaskPanel extends Component {
         </form>
         <button onClick={this.handleClickTask}>Add your Task</button>
         <button className="btnCleanTasks" onClick={this.handleDeleteTasks}>
-          Clean Tasks
+          Clean Lists
         </button>
       </div>
     );

@@ -119,6 +119,21 @@ class App extends React.Component {
   handleTaskStop = (task) => {
     console.log("Stop task", { task });
     clearInterval(task.intervalId);
+
+    const nextTask = {
+      ...task,
+      isStartBtn: false,
+    };
+
+    this.setState((prevState) => {
+      const nextTasks = prevState.tasks.map((value) => {
+        if (value.id === nextTask.id) {
+          return nextTask;
+        }
+        return value;
+      });
+      return { tasks: nextTasks };
+    });
   };
 
   handleClearTimer = () => {

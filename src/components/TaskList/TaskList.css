@@ -1,7 +1,15 @@
-.taskLists{
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.taskLists {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-toDoList {
+  text-transform: uppercase;
+  background-color: rgb(250, 242, 228);
+  display: inline;
+  padding: 10px 30px;
+  border-radius: 5px;
 }

@@ -13,15 +13,19 @@ class CountdownTimer extends Component {
   render() {
     const { time, elapsedTime, isStartBtn } = this.props.task;
     const { onStart, isStartStopVisibleinLists, onStop } = this.props;
+    const totalTimeinSeconds = time * 60; 
+    const timeLeftinSeconds = totalTimeinSeconds - elapsedTime;
+    const minuteLeft = Math.floor(timeLeftinSeconds / 60);
+    const secondLeft = Math.floor(timeLeftinSeconds % 60);
     return (
       <div>
         <div>
           <p>
             <strong>Name of you task:</strong>{" "}
           </p>
-          <p>Time: {time} seconds</p>
-          <p>Elapsed time: {elapsedTime}</p>
-          <p>Time Remaining: {time - elapsedTime}</p>
+          <p>
+            Time Remaining: {minuteLeft}:{secondLeft}
+          </p>
           <button
             disabled={isStartBtn}
             className="startBtn"

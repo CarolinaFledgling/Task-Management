@@ -23,10 +23,10 @@ class AddTaskPanel extends Component {
     });
   };
 
-  // Add task
+
   handleClickTask = () => {
     const { text, time } = this.state;
-    if (text.length > 2) {
+    if (text.length > 3 && time !== "") {
       const add = this.props.addTask(text, time);
       if (add) {
         this.setState({
@@ -35,7 +35,9 @@ class AddTaskPanel extends Component {
         });
       }
     } else {
-      alert(" too short task !");
+      alert(
+        "This task is too short, minimum of 3 characters and set some time for that Task 🔥"
+      );
     }
   };
 
@@ -55,9 +57,7 @@ class AddTaskPanel extends Component {
     return (
       <div>
         <Heading />
-        <button onClick={this.handlerClearTimers}>
-          Clear Time and Text
-        </button>
+        <button onClick={this.handlerClearTimers}>Clear Time and Text</button>
         <form className="form">
           <input
             className="input-field"

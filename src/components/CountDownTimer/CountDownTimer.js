@@ -11,35 +11,35 @@ class CountdownTimer extends Component {
   }
 
   render() {
+    const { time, elapsedTime, isStartBtn } = this.props.task;
+    const { onStart, isStartStopVisibleinLists, onStop } = this.props;
     return (
       <div>
         <div>
           <p>
             <strong>Name of you task:</strong>{" "}
           </p>
-          <p>Time: {this.props.task.time} seconds</p>
-          <p>Elapsed time: {this.props.task.elapsedTime}</p>
-          <p>
-            Time Remaining: {this.props.task.time - this.props.task.elapsedTime}
-          </p>
+          <p>Time: {time} seconds</p>
+          <p>Elapsed time: {elapsedTime}</p>
+          <p>Time Remaining: {time - elapsedTime}</p>
           <button
-            disabled={this.props.task.isStartBtn}
+            disabled={isStartBtn}
             className="startBtn"
             type="button"
-            onClick={this.props.onStart}
+            onClick={onStart}
             style={{
-              display: this.props.isStartStopVisibleinLists ? "block" : "none",
+              display: isStartStopVisibleinLists ? "block" : "none",
             }}
           >
             Start
           </button>
           <button
-            disabled={!this.props.task.isStartBtn}
+            disabled={!isStartBtn}
             className="stopBtn"
             type="button"
-            onClick={this.props.onStop}
+            onClick={onStop}
             style={{
-              display: this.props.isStartStopVisibleinLists ? "block" : "none",
+              display: isStartStopVisibleinLists ? "block" : "none",
             }}
           >
             Stop

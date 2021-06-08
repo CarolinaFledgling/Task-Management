@@ -11,7 +11,7 @@ class SearchList extends PureComponent {
         <Task
           key={task.id}
           task={task}
-          deleteTask={onDeleteTask}
+          onDeleteTask={onDeleteTask}
           index={index}
           isStartStopVisibleinLists={this.props.isStartStopVisibleinLists}
         />

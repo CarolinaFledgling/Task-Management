@@ -181,7 +181,7 @@ class App extends React.Component {
       });
     }
 
-    // console.log("Data:", this.props);
+
 
     return (
       <div className="app">

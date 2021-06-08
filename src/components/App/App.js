@@ -79,12 +79,15 @@ class App extends React.Component {
         // time = targetTime = czas docelowy: 30s
         // elapsedTime = uplynietyCzas = ileUbyloCzasu = ileCzasuUbylo: 29s
         // ile zostalo = 1s
-  
+
         let nextElapsedTime = foundTask.elapsedTime;
+        this.url = "https://soundbible.com/mp3/service-bell_daniel_simion.mp3";
+        this.audio = new Audio(this.url);
         if (foundTask.time === foundTask.elapsedTime) {
           // console.log("foundTask.time", foundTask.time);
           // console.log("foundTask.elapsed", foundTask.elapsedTime);
           clearInterval(foundTask.intervalId);
+          this.audio.play();
         } else {
           nextElapsedTime++;
         }
@@ -158,6 +161,7 @@ class App extends React.Component {
     this.setState({
       tasks: clearedTasks,
       searchText: "",
+      isStartBtn: false,
     });
   };
 

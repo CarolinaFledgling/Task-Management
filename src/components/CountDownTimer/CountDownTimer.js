@@ -24,7 +24,7 @@ class CountdownTimer extends Component {
           </p>
           <p>
             Time Remaining: {minuteLeft <= 9 ? "0" + minuteLeft : minuteLeft}:
-            {secondLeft <= 9 ? "0" + secondLeft : secondLeft}
+            {secondLeft <= 9 ? "0" + secondLeft : secondLeft} 🛎
           </p>
           <button
             disabled={isStartBtn}

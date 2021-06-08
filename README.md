@@ -1,11 +1,13 @@
 # Getting Started with Create React App
 
-Create React App is a popular toolchain for building apps.
+This is my first application using React. 
+After a couple of lectures from the React course, I decided to build something from scratch in order to put my knowledge into practice.
+One of the main ideas of this project is to get to know ‘Class Components’ because they are a part of React. 
+I am aware that React provides Hooks and I am going to use them in my next project. 
 
-## Description
+## What is Task management ?
 
-This project is made independently and without any starter code.
-The goal of this repository is to show the process of my learning React by creating a simple To Do list with search bar and countdown  🔥😊
+It is a simple application where you can add your daily tasks, and set your own time for how long you are going to do it.  🔥😊
 
 ## Status
 

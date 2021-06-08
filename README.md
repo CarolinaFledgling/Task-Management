@@ -22,8 +22,31 @@ Project is: _in progress_,
 - Handler Function in JSX
 - React Props
 - React State
-- Adding Lifecycle Methods to a Class
-  ...
+- Lifecycle Methods 
+- ...
+## Some basic issues of learning by building Task-management :
+
+### 1. Deleting tasks on both lists 
+
+In component Task I added  a button with a handler function, which deals with a click event for each item on both lists. Since I am on a mapped list I passed the index and task. I used them as parameters in function.
+ 
+`this.props.deleteTask(this.props.task, this.props.index);`
+
+To remove a specific task from both lists whenever I click on the delete button :
+**First, I used the array method indexOf to find the index of the deleting task.
+**Next, I checked If we found a clicking task `(indexTask > -1)`
+**Then, I modified the current stateful list with a splice array method, but before I used the spread operator to copy an (tasks) array. 
+
+
+
+ [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) The splice() method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.
+
+### 2. Adding a task to Task List 
+
+I added input fields (text and time) and a button to add each task to the list. Before we are able to add something , we need to track the input field state, because without the value from the input field, we don't have any text for the item which we want to add to our list . To address this issue I used a controlled component to control the value by giving the input field the value from React's state.
+In the main component App, in the function ‘Add Task’ I am building the structure of one single task. Each task will have text from the input field, time from the input field, and an ID thanks to counter and elapsedTime starting from 0.
+I tried to keep an immutable data structure and therefore create a new list based on the old list and add new tasks.
+
 
 ## Available Scripts
 

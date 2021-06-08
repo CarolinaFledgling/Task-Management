@@ -26,7 +26,7 @@ class AddTaskPanel extends Component {
   handleClickTask = () => {
     const { text, time } = this.state;
     if (text.length > 3 && time !== "") {
-      const add = this.props.addTask(text, parseInt(time, 10));
+      const add = this.props.addTask(text.toUpperCase(), parseInt(time, 10));
       if (add) {
         this.setState({
           text: "",

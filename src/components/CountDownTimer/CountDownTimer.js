@@ -20,11 +20,12 @@ class CountdownTimer extends Component {
       <div>
         <div>
           <p>
-            <strong>Name of you task:</strong>
-          </p>
-          <p>
-            Time Remaining: {minuteLeft <= 9 ? "0" + minuteLeft : minuteLeft}:
-            {secondLeft <= 9 ? "0" + secondLeft : secondLeft} 🛎
+            Time Remaining:{" "}
+            <strong>
+              {minuteLeft <= 9 ? "0" + minuteLeft : minuteLeft}:
+              {secondLeft <= 9 ? "0" + secondLeft : secondLeft}{" "}
+            </strong>
+            🔔
           </p>
           <button
             disabled={isStartBtn}

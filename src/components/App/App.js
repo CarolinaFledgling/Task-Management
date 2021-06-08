@@ -55,6 +55,7 @@ class App extends React.Component {
       text,
       time,
       elapsedTime: 0,
+      isStopBtn: true,
     };
     this.state.counter++;
 

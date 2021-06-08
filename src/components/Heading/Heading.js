@@ -5,7 +5,7 @@ const Heading = (props) => {
   return (
     <div>
       <h1>-TASK-📔- MANAGEMENT- 😉</h1>
-      <p>What are your tasks for today ? ✍️</p>
+      <h2>What are your tasks for today ? ✍️</h2>
     </div>
   );
 };

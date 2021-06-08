@@ -11,7 +11,7 @@ class CountdownTimer extends Component {
 
   render() {
     const { time, elapsedTime, isStartBtn, isStopBtn } = this.props.task;
-    console.log(isStartBtn);
+    console.log(isStopBtn);
     const { onStart, isStartStopVisibleinLists, onStop } = this.props;
     // for faster testing, we test the timer in seconds if you want to have minutes add : time * 60
     const totalTimeinSeconds = time;
@@ -42,10 +42,9 @@ class CountdownTimer extends Component {
               Start
             </button>
             <button
-              disabled={!isStartBtn}
-              disabled={!isStopBtn}
-              // jezeli isStartBtn rowna sie true i isStopBtn rowna sie false wtedy displabled oba
-              disabled={isStartBtn === true && isStopBtn === false}
+              disabled={
+                !isStartBtn || (isStartBtn === true && isStopBtn === false)
+              }
               className="stopBtn"
               type="button"
               onClick={onStop}

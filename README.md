@@ -13,6 +13,9 @@ It is a simple application where you can add your daily tasks, and set your own 
 
 Project is: _in progress_,
 
+## Testing
+- for faster testing: now test the timer in seconds if you want to have minutes add : time * 60 in countDownTimer components
+
 ## The goal of this project is to practice:
 
 - Project setup to understanding the fundamentals of JavaScript for React (Requirements)

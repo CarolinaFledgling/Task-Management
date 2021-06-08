@@ -25,7 +25,7 @@ class Task extends React.PureComponent {
     return (
       <li className="item">
         <h3> {text}</h3>
-        <p>Your set time: {time} min</p>
+        <p>Your set time: {time} seconds</p>
         <CountdownTimer
           onStart={this.handleStart}
           onStop={this.handleStop}

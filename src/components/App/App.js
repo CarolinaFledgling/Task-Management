@@ -20,6 +20,7 @@ class App extends React.Component {
       searchText: "",
       counter: 0,
       isStartBtn: false,
+      isStopBtn: false,
     };
   }
 
@@ -88,6 +89,7 @@ class App extends React.Component {
           // console.log("foundTask.elapsed", foundTask.elapsedTime);
           clearInterval(foundTask.intervalId);
           this.audio.play();
+          foundTask.isStopBtn = false;
         } else {
           nextElapsedTime++;
         }
@@ -112,6 +114,7 @@ class App extends React.Component {
       ...task,
       intervalId: taskIntervalId,
       isStartBtn: true,
+      isStopBtn: true,
     };
 
     this.setState((prevState) => {
@@ -135,6 +138,7 @@ class App extends React.Component {
     const nextTask = {
       ...task,
       isStartBtn: false,
+      isStopBtn: false,
     };
 
     this.setState((prevState) => {

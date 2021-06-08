@@ -22,3 +22,7 @@
   background-color: #008cba;
   color: white;
 }
+
+.buttons-Stop-Start {
+  display: flex;
+}

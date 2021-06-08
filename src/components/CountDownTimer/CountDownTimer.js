@@ -10,8 +10,9 @@ class CountdownTimer extends Component {
   }
 
   render() {
-    const { time, elapsedTime, isStartBtn } = this.props.task;
+    const { time, elapsedTime, isStartBtn, isStopBtn } = this.props.task;
     const { onStart, isStartStopVisibleinLists, onStop } = this.props;
+    // for faster testing, we test the timer in seconds if you want to have minutes add : time * 60
     const totalTimeinSeconds = time;
     const timeLeftinSeconds = totalTimeinSeconds - elapsedTime;
     const minuteLeft = Math.floor(timeLeftinSeconds / 60);
@@ -27,28 +28,32 @@ class CountdownTimer extends Component {
             </strong>
             🔔
           </p>
-          <button
-            disabled={isStartBtn}
-            className="startBtn"
-            type="button"
-            onClick={onStart}
-            style={{
-              display: isStartStopVisibleinLists ? "block" : "none",
-            }}
-          >
-            Start
-          </button>
-          <button
-            disabled={!isStartBtn}
-            className="stopBtn"
-            type="button"
-            onClick={onStop}
-            style={{
-              display: isStartStopVisibleinLists ? "block" : "none",
-            }}
-          >
-            Stop
-          </button>
+          <div className="buttons-Stop-Start">
+            <button
+              disabled={isStartBtn}
+              className="startBtn"
+              type="button"
+              onClick={onStart}
+              style={{
+                display: isStartStopVisibleinLists ? "block" : "none",
+              }}
+            >
+              Start
+            </button>
+            <button
+              disabled={!isStartBtn}
+              // jezeli isStartBtn rowna sie true i isStopBtn rowna sie false wtedy displabled oba
+              disabled={isStartBtn === true && isStopBtn === false}
+              className="stopBtn"
+              type="button"
+              onClick={onStop}
+              style={{
+                display: isStartStopVisibleinLists ? "block" : "none",
+              }}
+            >
+              Stop
+            </button>
+          </div>
         </div>
       </div>
     );

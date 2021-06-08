@@ -7,7 +7,7 @@ const TaskList = (props) => {
     <Task
       key={task.id}
       task={task}
-      deleteTask={props.deleteTask}
+      onDeleteTask={props.onDeleteTask}
       index={index}
       onStart={props.onStart}
       onStop={props.onStop}

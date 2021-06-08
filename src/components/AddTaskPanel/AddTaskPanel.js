@@ -10,7 +10,7 @@ class AddTaskPanel extends Component {
       time: "",
     };
   }
-
+  // const parseTime = parseInt(foundTask.time, 10);
   handleText = (event) => {
     this.setState({
       text: event.target.value,
@@ -26,7 +26,7 @@ class AddTaskPanel extends Component {
   handleClickTask = () => {
     const { text, time } = this.state;
     if (text.length > 3 && time !== "") {
-      const add = this.props.addTask(text, time);
+      const add = this.props.addTask(text, parseInt(time, 10));
       if (add) {
         this.setState({
           text: "",

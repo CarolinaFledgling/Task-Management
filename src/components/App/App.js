@@ -72,14 +72,28 @@ class App extends React.Component {
   handleTaskStart = (task) => {
     const taskIntervalId = setInterval(() => {
       this.setState((prevState) => {
-        //update every second
         const foundTask = prevState.tasks.find((value) => value.id === task.id);
+        console.log("foundTask", foundTask);
+        console.log("foundTask.elapsed", foundTask.elapsedTime);
+        console.log("isPassed: ", foundTask.time === foundTask.elapsedTime);
+        // time = targetTime = czas docelowy: 30s
+        // elapsedTime = uplynietyCzas = ileUbyloCzasu = ileCzasuUbylo: 29s
+        // ile zostalo = 1s
+  
+        let nextElapsedTime = foundTask.elapsedTime;
+        if (foundTask.time === foundTask.elapsedTime) {
+          // console.log("foundTask.time", foundTask.time);
+          // console.log("foundTask.elapsed", foundTask.elapsedTime);
+          clearInterval(foundTask.intervalId);
+        } else {
+          nextElapsedTime++;
+        }
 
         const nextTasks = prevState.tasks.map((value) => {
           if (value.id === task.id) {
             return {
               ...foundTask,
-              elapsedTime: foundTask.elapsedTime + 1,
+              elapsedTime: nextElapsedTime,
             };
           }
           return value;
@@ -158,9 +172,7 @@ class App extends React.Component {
       });
     }
 
-    console.log("Data:", this.props);
-
-
+    // console.log("Data:", this.props);
 
     return (
       <div className="app">
@@ -174,8 +186,7 @@ class App extends React.Component {
           />
           <TaskList
             tasks={this.state.tasks}
-            deleteTask={this.handleDeleteTask}
-            // zapytac się czy tu powinno być OnDeleteTask ??
+            onDeleteTask={this.handleDeleteTask}
             onStart={this.handleTaskStart}
             onStop={this.handleTaskStop}
             isStartStopVisibleinTaskList={

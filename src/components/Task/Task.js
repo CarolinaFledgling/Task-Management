@@ -9,7 +9,7 @@ class Task extends React.PureComponent {
   }
 
   handleDeleteTask = () => {
-    this.props.deleteTask(this.props.task, this.props.index);
+    this.props.onDeleteTask(this.props.task, this.props.index);
   };
 
   handleStart = () => {

@@ -33,9 +33,9 @@ In component Task I added  a button with a handler function, which deals with a 
 `this.props.deleteTask(this.props.task, this.props.index);`
 
 To remove a specific task from both lists whenever I click on the delete button :
-**First, I used the array method indexOf to find the index of the deleting task.
-**Next, I checked If we found a clicking task `(indexTask > -1)`
-**Then, I modified the current stateful list with a splice array method, but before I used the spread operator to copy an (tasks) array. 
+- First, I used the array method indexOf to find the index of the deleting task.
+- Next, I checked If we found a clicking task `(indexTask > -1)`
+- Then, I modified the current stateful list with a splice array method, but before I used the spread operator to copy an (tasks) array. 
 
 
 

@@ -21,6 +21,7 @@ class App extends React.Component {
       counter: 0,
       isStartBtn: false,
       isStopBtn: false,
+      isNotificationOn: false,
     };
   }
 
@@ -56,6 +57,7 @@ class App extends React.Component {
       time,
       elapsedTime: 0,
       isStopBtn: true,
+      isNotificationOn: false,
     };
     this.state.counter++;
 
@@ -91,8 +93,13 @@ class App extends React.Component {
           clearInterval(foundTask.intervalId);
           this.audio.play();
           foundTask.isStopBtn = false;
+          foundTask.isNotificationOn = true;
         } else {
           nextElapsedTime++;
+        }
+
+        if (foundTask.isNotificationOn) {
+          this.handlerStartNotification();
         }
 
         const nextTasks = prevState.tasks.map((value) => {
@@ -170,6 +177,46 @@ class App extends React.Component {
     });
   };
 
+  handlerStartNotification = () => {
+    if ("Notification" in window) {
+      if (Notification.permission === "granted") {
+        // If it's okay let's create a notification
+        doNotify();
+      } else {
+        //notification == denied
+        Notification.requestPermission()
+          .then(function (result) {
+            console.log(result); //granted || denied
+            if (Notification.permission == "granted") {
+              doNotify();
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
+
+    function doNotify() {
+      let title = "-TASK-📔- MANAGEMENT- 😉";
+      // let t = Date.now() + 120000; //2 mins in future
+      let options = {
+        body: "End of time in the task",
+        lang: "en-CA",
+        // timestamp: t,
+      };
+      let n = new Notification(title, options);
+
+      // n.addEventListener("show", function (ev) {
+      //   console.log("SHOW", ev.currentTarget.data);
+      // });
+      // n.addEventListener("close", function (ev) {
+      //   console.log("CLOSE", ev.currentTarget.body);
+      // });
+      setTimeout(n.close.bind(n), 3000); //close notification after 3 seconds
+    }
+  };
+
   render() {
     let filteredTask = null;
 
@@ -180,8 +227,6 @@ class App extends React.Component {
           .includes(this.state.searchText.toLowerCase());
       });
     }
-
-
 
     return (
       <div className="app">

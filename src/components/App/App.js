@@ -159,13 +159,13 @@ class App extends React.Component {
       return {
         ...task,
         elapsedTime: 0,
+        isStartBtn: false,
       };
     });
 
     this.setState({
       tasks: clearedTasks,
       searchText: "",
-      isStartBtn: false,
     });
   };
 

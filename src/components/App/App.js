@@ -58,6 +58,7 @@ class App extends React.Component {
       elapsedTime: 0,
       isStopBtn: true,
       isNotificationOn: false,
+      //tutaj dodałam
     };
     this.state.counter++;
 
@@ -94,6 +95,7 @@ class App extends React.Component {
           this.audio.play();
           foundTask.isStopBtn = false;
           foundTask.isNotificationOn = true;
+          //tutaj zmieniam na true
         } else {
           nextElapsedTime++;
         }
@@ -168,6 +170,7 @@ class App extends React.Component {
         ...task,
         elapsedTime: 0,
         isStartBtn: false,
+        isNotificationOn: false,
       };
     });
 
@@ -229,7 +232,7 @@ class App extends React.Component {
     }
 
     return (
-      <div className="app">
+      <div className="app wrapper">
         <div className="left-side">
           <AddTaskPanel
             title={this.props.title}

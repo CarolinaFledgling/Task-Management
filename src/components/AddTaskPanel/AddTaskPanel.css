@@ -1,9 +1,24 @@
 .input-field {
   padding: 10px;
-  margin-left: 1rem;
-  font-weight: 500;
+  width: 100%;
+  margin: 1em 0;
 }
 
 .btnCleanTasks {
-  margin-left: 1rem;
+  margin-left: 1em;
+}
+
+.btnResetTimeAndCleanText {
+  margin-left: 1em;
+}
+
+@media (max-width: 768px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btnResetTimeAndCleanText {
+    margin-left: 0em;
+  }
 }

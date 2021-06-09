@@ -4,8 +4,8 @@ import "./Heading.css";
 const Heading = (props) => {
   return (
     <div>
-      <h1>-TASK-📔- MANAGEMENT- 😉</h1>
-      <h2>What are your tasks for today ? ✍️</h2>
+      <h1 className="title">-TASK-📔- MANAGEMENT- 😉</h1>
+      <h2 className="heading">What are your tasks for today ? ✍️</h2>
     </div>
   );
 };

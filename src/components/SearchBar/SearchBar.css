@@ -1,6 +1,28 @@
 .title-FindTask {
   background-color: rgb(250, 242, 228);
-  display: inline;
   padding: 10px 20px;
   border-radius: 5px;
+  margin-bottom: 1em;
+  font-size: 2rem;
+}
+.searchBar {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  /* font-size: 1.7rem; */
+}
+.input-search-bar {
+  width: 100%;
+  margin: 0 0 1em 0;
+}
+
+@media (max-width: 768px) {
+  .title-FindTask {
+    margin-bottom: 1em;
+    font-size: 2rem;
+  }
+  .searchBar {
+    width: 100%;
+  }
 }

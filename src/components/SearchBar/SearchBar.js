@@ -13,15 +13,14 @@ class SearchBar extends PureComponent {
   render() {
     return (
       <div className="searchBar">
-        <div>
-          <h3 className='title-FindTask'> Find your task 🔍</h3>
-          <input
-            type="text"
-            placeholder="find your task"
-            value={this.props.text}
-            onChange={this.handleText}
-          ></input>
-        </div>
+        <h3 className="title-FindTask"> Find your task 🔍</h3>
+        <input
+          className="input-search-bar"
+          type="text"
+          placeholder="find your task"
+          value={this.props.text}
+          onChange={this.handleText}
+        ></input>
       </div>
     );
   }

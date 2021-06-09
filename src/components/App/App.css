@@ -1,6 +1,29 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 6em 2em;
+}
 .app {
-  padding: 20px;
   display: flex;
+  /* flex-direction: column; */
 }
 
 .left-side {
@@ -38,4 +61,20 @@ button:disabled {
 button:hover:enabled {
   background-color: #4caf50;
   color: white;
+}
+
+/* Media */
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+  .left-side {
+    width: 100%;
+    min-height: 800px;
+  }
+
+  .right-side {
+    width: 100%;
+  }
 }

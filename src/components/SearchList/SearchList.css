@@ -7,7 +7,9 @@
 }
 
 .taskList {
-  color: crimson;
+  /* color: crimson; */
+  font-size: 1.7rem;
+  margin: 2em 0;
 }
 
 input {
@@ -18,5 +20,3 @@ input {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
-

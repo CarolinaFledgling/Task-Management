@@ -10,7 +10,6 @@ class AddTaskPanel extends Component {
       time: "",
     };
   }
-  // const parseTime = parseInt(foundTask.time, 10);
   handleText = (event) => {
     this.setState({
       text: event.target.value,
@@ -56,7 +55,6 @@ class AddTaskPanel extends Component {
     return (
       <div>
         <Heading />
-        <button onClick={this.handlerClearTimers}>Clear Time and Text</button>
         <form className="form">
           <input
             className="input-field"
@@ -76,6 +74,9 @@ class AddTaskPanel extends Component {
         <button onClick={this.handleClickTask}>Add your Task</button>
         <button className="btnCleanTasks" onClick={this.handleDeleteTasks}>
           Clean Lists
+        </button>
+        <button className='btnResetTimeAndCleanText' onClick={this.handlerClearTimers}>
+          Reset Time and Clean Text
         </button>
       </div>
     );

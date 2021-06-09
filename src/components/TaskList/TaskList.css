@@ -4,12 +4,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 1em;
 }
 
 .title-toDoList {
   text-transform: uppercase;
   background-color: rgb(250, 242, 228);
-  display: inline;
-  padding: 10px 30px;
+  padding: 10px 20px;
   border-radius: 5px;
+  margin-bottom: 1em;
+  font-size: 2.7rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .title-toDoList {
+    width: 100%;
+    font-size: 2rem;
+  }
 }

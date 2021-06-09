@@ -14,7 +14,7 @@ class CountdownTimer extends Component {
     console.log(isStopBtn);
     const { onStart, isStartStopVisibleinLists, onStop } = this.props;
     // for faster testing, we test the timer in seconds if you want to have minutes add : time * 60
-    const totalTimeinSeconds = time;
+    const totalTimeinSeconds = time * 60;
     const timeLeftinSeconds = totalTimeinSeconds - elapsedTime;
     const minuteLeft = Math.floor(timeLeftinSeconds / 60);
     const secondLeft = Math.floor(timeLeftinSeconds % 60);

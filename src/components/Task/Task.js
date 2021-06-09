@@ -1,5 +1,5 @@
 import React from "react";
-import CountdownTimer from "../CountdownTimer/CountDownTimer";
+import CountdownTimer from "../CountDownTimer/CountDownTimer";
 import "./Task.css";
 
 class Task extends React.PureComponent {

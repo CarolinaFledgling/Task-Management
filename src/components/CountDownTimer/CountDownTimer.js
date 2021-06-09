@@ -13,8 +13,8 @@ class CountdownTimer extends Component {
     const { time, elapsedTime, isStartBtn, isStopBtn } = this.props.task;
     console.log(isStopBtn);
     const { onStart, isStartStopVisibleinLists, onStop } = this.props;
-    // for faster testing, we test the timer in seconds if you want to have minutes add : time * 60
-    const totalTimeinSeconds = time * 60;
+
+    const totalTimeinSeconds = time;
     const timeLeftinSeconds = totalTimeinSeconds - elapsedTime;
     const minuteLeft = Math.floor(timeLeftinSeconds / 60);
     const secondLeft = Math.floor(timeLeftinSeconds % 60);
@@ -22,10 +22,10 @@ class CountdownTimer extends Component {
       <div>
         <div>
           <p>
-            Time Remaining:{" "}
+            Time Remaining:
             <strong>
               {minuteLeft <= 9 ? "0" + minuteLeft : minuteLeft}:
-              {secondLeft <= 9 ? "0" + secondLeft : secondLeft}{" "}
+              {secondLeft <= 9 ? "0" + secondLeft : secondLeft}
             </strong>
             🔔
           </p>

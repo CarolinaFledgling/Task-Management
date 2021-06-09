@@ -23,6 +23,9 @@ class App extends React.Component {
       isStopBtn: false,
       isNotificationOn: false,
     };
+    
+    this.url = "/bell.mp3";
+    this.audio = new Audio(this.url);
   }
 
   handleDeleteTask = (taskToRemove, index) => {
@@ -58,7 +61,6 @@ class App extends React.Component {
       elapsedTime: 0,
       isStopBtn: true,
       isNotificationOn: false,
-      //tutaj dodałam
     };
     this.state.counter++;
 
@@ -81,13 +83,9 @@ class App extends React.Component {
         console.log("foundTask", foundTask);
         console.log("foundTask.elapsed", foundTask.elapsedTime);
         console.log("isPassed: ", foundTask.time === foundTask.elapsedTime);
-        // time = targetTime = czas docelowy: 30s
-        // elapsedTime = uplynietyCzas = ileUbyloCzasu = ileCzasuUbylo: 29s
-        // ile zostalo = 1s
 
         let nextElapsedTime = foundTask.elapsedTime;
-        this.url = "https://soundbible.com/mp3/service-bell_daniel_simion.mp3";
-        this.audio = new Audio(this.url);
+
         if (foundTask.time === foundTask.elapsedTime) {
           // console.log("foundTask.time", foundTask.time);
           // console.log("foundTask.elapsed", foundTask.elapsedTime);
@@ -95,7 +93,6 @@ class App extends React.Component {
           this.audio.play();
           foundTask.isStopBtn = false;
           foundTask.isNotificationOn = true;
-          //tutaj zmieniam na true
         } else {
           nextElapsedTime++;
         }

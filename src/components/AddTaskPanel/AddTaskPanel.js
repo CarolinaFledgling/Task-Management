@@ -25,7 +25,10 @@ class AddTaskPanel extends Component {
   handleClickTask = () => {
     const { text, time } = this.state;
     if (text.length > 3 && time !== "") {
-      const add = this.props.addTask(text.toUpperCase(), parseInt(time, 10));
+      const add = this.props.addTask(
+        text.toUpperCase(),
+        parseInt(time, 10) * 60
+      );
       if (add) {
         this.setState({
           text: "",
@@ -75,7 +78,10 @@ class AddTaskPanel extends Component {
         <button className="btnCleanTasks" onClick={this.handleDeleteTasks}>
           Clean Lists
         </button>
-        <button className='btnResetTimeAndCleanText' onClick={this.handlerClearTimers}>
+        <button
+          className="btnResetTimeAndCleanText"
+          onClick={this.handlerClearTimers}
+        >
           Reset Time and Clean Text
         </button>
       </div>

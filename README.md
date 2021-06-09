@@ -27,6 +27,9 @@ Project is: _in progress_,
 - React State
 - Lifecycle Methods 
 - ...
+
+### Preview the App live on : [DEMO](https://react-task-mgm.netlify.app/)
+
 ## Some basic issues of learning by building Task-management :
 
 ### 1. Deleting tasks on both lists 

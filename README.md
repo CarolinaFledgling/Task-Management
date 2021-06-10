@@ -13,8 +13,6 @@ It is a simple application where you can add your daily tasks, and set your own 
 
 Project is: _in progress_,
 
-## Testing
-- for faster testing: now test the timer in seconds if you want to have minutes add : time * 60 in countDownTimer components
 
 ## The goal of this project is to practice:
 
@@ -27,6 +25,11 @@ Project is: _in progress_,
 - React State
 - Lifecycle Methods 
 - ...
+
+### Preview the App live on : [DEMO](https://react-task-mgm.netlify.app/)
+
+
+
 ## Some basic issues of learning by building Task-management :
 
 ### 1. Deleting tasks on both lists 

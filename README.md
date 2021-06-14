@@ -7,7 +7,8 @@ I am aware that React provides Hooks and I am going to use them in my next proje
 
 ## What is Task management ?
 
-It is a simple application where you can add your daily tasks, and set your own time for how long you are going to do it.  🔥😊
+It is a simple application where you can add your daily tasks, and set your own time for how long you are going to do it. 
+On desktop, you will get notification and bell sound when the task is finish. 🔥😊
 
 ## Status
 

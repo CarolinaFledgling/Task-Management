@@ -1,7 +1,6 @@
 # Getting Started with Create React App
 
-This is my first application using React. 
-After a couple of lectures from the React course, I decided to build something from scratch in order to put my knowledge into practice.
+I decided to build something from scratch in order to put my knowledge into practice.
 One of the main ideas of this project is to get to know ‘Class Components’ because they are a part of React. 
 I am aware that React provides Hooks and I am going to use them in my next project. 
 
